@@ -4,7 +4,7 @@
         "title": "Equipo (campera y calza)",
         "description": "Conjunto oficial de alta competencia Hacoaj 2026. Microfibra de primera calidad con lycra.",
         "images": [
-            "/images/products/product-1.png"
+            "./images/products/product-1.png"
         ],
         "selections": [
             {
@@ -35,7 +35,7 @@
         "title": "Remera térmica blanca manga larga",
         "description": "Remera térmica blanca manga larga de alta calidad.",
         "images": [
-            "/images/products/product-2.jpg"
+            "./images/products/product-2.jpg"
         ],
         "selections": [
             {
@@ -66,8 +66,8 @@
         "title": "Remera blanca manga corta",
         "description": "Remera blanca manga corta de alta calidad.",
         "images": [
-            "/images/products/product-3a.png",
-            "/images/products/product-3b.png"
+            "./images/products/product-3a.png",
+            "./images/products/product-3b.png"
         ],
         "selections": [
             {
@@ -97,7 +97,7 @@
         "title": "Musculosa blanca",
         "description": "Musculosa blanca de alta calidad.",
         "images": [
-            "/images/products/product-4.png"
+            "./images/products/product-4.png"
         ],
         "selections": [
             {
@@ -127,7 +127,7 @@
         "title": "Manta de invierno",
         "description": "Manta de invierno de alta calidad.",
         "images": [
-            "/images/products/product-5.jpg"
+            "./images/products/product-5.jpg"
         ],
         "selections": [
             {
@@ -144,7 +144,7 @@
         "title": "Equipo (top y short)",
         "description": "Conjunto oficial de alta competencia Hacoaj 2026. Microfibra de primera calidad con lycra.",
         "images": [
-            "/images/products/product-6.png"
+            "./images/products/product-6.png"
         ],
         "selections": [
             {
@@ -175,7 +175,7 @@
         "title": "Neceser Hacoaj",
         "description": "Neceser gimnasia Artística (con brillos, plancha de stickers Hacoaj y colita de pelo).",
         "images": [
-            "/images/products/product-7.png"
+            "./images/products/product-7.png"
         ],
         "selections": [
             {
@@ -192,7 +192,7 @@
         "title": "Cueros con correa",
         "description": "Cueros con correa de alta calidad.",
         "images": [
-            "/images/products/product-8.png"
+            "./images/products/product-8.png"
         ],
         "selections": [
             {

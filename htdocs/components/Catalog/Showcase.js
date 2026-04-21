@@ -16,7 +16,7 @@ export class Showcase extends Component {
     async init() {
         // Fetch the product catalog we created
         try {
-            const response = await fetch('/data/products.json');
+            const response = await fetch('./data/products.json');
             const catalog = await response.json();
 
             // Map each JSON item to a ProductCard component instance
