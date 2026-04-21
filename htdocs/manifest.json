@@ -1,7 +1,7 @@
 {
   "name": "Club Hacoaj - Gimnasia Artística",
   "short_name": "Hacoaj Gimnasia",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0033a0",
