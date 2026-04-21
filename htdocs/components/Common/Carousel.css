@@ -1,0 +1,16 @@
+.carousel-wrapper {
+    overflow: hidden;
+}
+.control-btn:hover {
+    opacity: 1 !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}

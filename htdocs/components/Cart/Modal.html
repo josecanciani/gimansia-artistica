@@ -1,0 +1,59 @@
+<div fw-if="isOpen" class="modal fade show d-block" style="background: rgba(0,0,0,0.5); z-index: 1060 !important;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0 shadow-lg" style="max-height: 85vh;">
+            <div class="modal-header bg-primary text-white border-bottom-0 pb-2 pt-3 align-items-start">
+                <div>
+                    <h6 class="modal-title fw-bold mb-0"><i class="bi bi-bag-check-fill me-2"></i>Tu pedido</h6>
+                    <small class="text-white-50 lh-1 d-block mt-1" style="font-size: 0.75rem;">Resumen de prendas seleccionadas</small>
+                </div>
+                <button type="button" class="btn-close btn-close-white" aria-label="Cerrar" onclick="((this)).close()"></button>
+            </div>
+            
+            <div class="modal-body p-3 overflow-x-hidden custom-scrollbar" style="overflow-y: scroll !important;">
+                <div fw-each="prod in groupedItems" class="mb-3 pb-2 border-bottom border-light">
+                    <div class="fw-bold text-dark mb-2" style="font-size: 0.85rem;">((prod.title))</div>
+                    <div fw-each="item in prod.selections" class="d-flex justify-content-between align-items-center mb-1 px-0">
+                        <span class="text-secondary" style="font-size: 0.8rem;">
+                            <i class="bi bi-arrow-return-right me-1 opacity-50"></i>
+                            ((item.group)) <span class="fw-bold text-dark">— ((item.option))</span>
+                            <span fw-if="item.countBadge" class="badge bg-secondary opacity-75 ms-1" style="font-size: 0.65rem;">((item.countBadge))</span>
+                        </span>
+                        <span class="fw-medium text-dark" style="font-size: 0.8rem;">$ ((item.totalLinePrice))</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer bg-light border-top-0 d-flex flex-column align-items-stretch px-3 py-3 gap-2">
+                <div class="d-flex justify-content-between align-items-end w-100 mb-1">
+                    <span class="fw-bold text-muted small">Total a abonar:</span>
+                    <span class="fw-bold text-primary h5 mb-0">$ (($formattedTotal))</span>
+                </div>
+                <button type="button" class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2" onclick="((this)).checkout()">
+                    Enviar reserva por Email <i class="bi bi-envelope-at"></i>
+                </button>
+                <div class="text-center mt-0">
+                    <small class="text-muted" style="font-size: 0.75rem;">¿Sin e-mail? <a href="#" onclick="((this)).checkoutWhatsApp(); return false;" class="text-success fw-bold text-decoration-none">Reserva por WhatsApp <i class="bi bi-whatsapp"></i></a></small>
+                </div>
+                <div class="alert alert-warning border-0 rounded-3 p-2 mt-1 mb-0 w-100 text-center" style="background-color: #fff8e1;">
+                    <small class="text-dark d-block lh-sm" style="font-size: 0.75rem;"><strong>📌 PAGO EN EFECTIVO:</strong> Te enviaremos un email para coordinarlo.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Forzar scrollbar visible permanentemente para móviles */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 51, 160, 0.4);
+        border-radius: 10px;
+    }
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 51, 160, 0.4) transparent;
+    }
+</style>

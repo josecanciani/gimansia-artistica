@@ -1,0 +1,28 @@
+<div class="position-relative w-100 h-100 carousel-wrapper" style="background-color: #f8f9fa;">
+    <!-- Render active image -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+        <!-- Single Image Display -->
+        <img class="w-100 h-100 fade-in" style="object-fit: cover;" src="(($currentImage))" alt="Producto">
+    </div>
+
+    <!-- Controls (Only visible if > 1 image) -->
+    <div fw-if="$hasMultiple"
+        class="position-absolute w-100 h-100 top-0 start-0 d-flex justify-content-between align-items-center p-2 z-index-2">
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm opacity-75 control-btn" onclick="((this)).prev()">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm opacity-75 control-btn" onclick="((this)).next()">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Dots -->
+    <div fw-if="$hasMultiple"
+        class="position-absolute bottom-0 start-0 w-100 d-flex justify-content-center gap-2 pb-2 z-index-2">
+        <div fw-each="img in images" onclick="((this)).goTo(images.indexOf(img))"
+            class="carousel-dot cursor-pointer transition-transform"
+            style="width: 8px; height: 8px; border-radius: 50%;"
+            fw-class="images.indexOf(img) == activeIndex ? 'bg-primary' : 'bg-secondary opacity-50'">
+        </div>
+    </div>
+</div>

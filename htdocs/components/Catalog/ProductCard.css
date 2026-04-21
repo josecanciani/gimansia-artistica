@@ -1,0 +1,13 @@
+/* Styles para ProductCard */
+.glassy-product {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border) !important;
+}
+.glassy-product select {
+    border-radius: 10px;
+    border-color: #e2e8f0;
+}
+.glassy-product select:focus {
+    border-color: var(--hacoaj-blue-light);
+    box-shadow: 0 0 0 0.25rem rgba(77, 115, 209, 0.25);
+}

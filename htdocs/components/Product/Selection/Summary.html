@@ -1,0 +1,13 @@
+<div class="mb-3 selection-block position-relative">
+    <label class="form-label text-secondary small fw-medium mb-1">Elegí tu combo marcando talles:</label>
+
+    <!-- Trigger Exterior -->
+    <button type="button" class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center" onclick="((this)).toggle()">
+        <span fw-if="!$hasSelections">Prendas y Talles...</span>
+        <span fw-if="$hasSelections" class="fw-bold text-dark">(($confirmedAmount)) prendas en la bolsa ($ (($formattedConfirmedTotal)))</span>
+        <span><i class="bi bi-chevron-down"></i></span>
+    </button>
+
+    <!-- Montaje Efímero (se dibuja cuando se toca el switch y genera una Modal) -->
+    <div fw-if="isOpen">((editor))</div>
+</div>

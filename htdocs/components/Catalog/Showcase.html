@@ -1,0 +1,51 @@
+<div class="showcase py-5 bg-white">
+    <div class="container pb-5">
+        <div class="text-center mb-5">
+            <span class="badge rounded-pill bg-light text-primary px-3 py-2 border mb-3">Catálogo 2026</span>
+            <h2 class="display-5 fw-bold text-dark">Indumentaria Oficial</h2>
+            <p class="text-muted">Equípate con los colores y la pasión del Club Hacoaj.</p>
+        </div>
+
+        <!-- Información Importante Inicial -->
+        <div class="row justify-content-center mb-4 px-3">
+            <div class="col-lg-8">
+                <div class="alert alert-warning border-0 rounded-3 shadow-sm p-3 text-center mb-0" style="background-color: #fff8e1;">
+                    <h6 class="fw-bold text-dark mb-1">⭐ PRIMER PEDIDO 2026</h6>
+                    <p class="text-dark small mb-0 lh-sm">
+                        La confección requiere un mínimo grupal de 25 unidades. Te confirmaremos la reserva cuando completemos la lista.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Showcase CSS Grid Layout -->
+        <div class="row g-4 justify-content-center">
+            <!-- Iterate precisely over our generated child components -->
+            <!-- The framework auto-resolves each item to its component mount point -->
+            <div fw-each="card in cards" class="col-sm-6 col-lg-4 col-xl-3 d-flex">
+                <div style="width: 100%; display: flex;">
+                    ((card))
+                </div>
+            </div>
+
+            <!-- Fallback if empty -->
+            <div fw-if="!cards.length" class="text-center text-muted py-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-3">Cargando catálogo...</p>
+            </div>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+                <div class="alert alert-light border rounded-4 shadow-sm p-4 text-center">
+                    <i class="bi bi-envelope-paper h2 text-primary mb-3 d-block"></i>
+                    <p class="text-muted small mb-0 fw-medium">
+                        Cualquier inquietud o consulta por mail a:<br>
+                        <a href="mailto:indumentariagimnasiahacoaj@gmail.com" class="text-decoration-none fw-bold fs-6 mt-1 d-inline-block">indumentariagimnasiahacoaj@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+[
+    {
+        "id": "campera-y-calza",
+        "title": "Equipo (campera y calza)",
+        "description": "Conjunto oficial de alta competencia Hacoaj 2026. Microfibra de primera calidad con lycra.",
+        "images": [
+            "/images/products/product-1.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle niños",
+                "price": 75000,
+                "options": [
+                    "Talle 6",
+                    "Talle 8",
+                    "Talle 10",
+                    "Talle 12",
+                    "Talle 14",
+                    "Talle 16"
+                ]
+            },
+            {
+                "label": "Talle adultos",
+                "price": 80000,
+                "options": [
+                    "Small",
+                    "Medium",
+                    "Large"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "remera-termica-blanca-manga-larga",
+        "title": "Remera térmica blanca manga larga",
+        "description": "Remera térmica blanca manga larga de alta calidad.",
+        "images": [
+            "/images/products/product-2.jpg"
+        ],
+        "selections": [
+            {
+                "label": "Talle niños",
+                "price": 30000,
+                "options": [
+                    "Talle 6",
+                    "Talle 8",
+                    "Talle 10",
+                    "Talle 12",
+                    "Talle 14",
+                    "Talle 16"
+                ]
+            },
+            {
+                "label": "Talle adultos",
+                "price": 35000,
+                "options": [
+                    "Small",
+                    "Medium",
+                    "Large"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "remera-blanca-manga-corta",
+        "title": "Remera blanca manga corta",
+        "description": "Remera blanca manga corta de alta calidad.",
+        "images": [
+            "/images/products/product-3a.png",
+            "/images/products/product-3b.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle niños",
+                "price": 25000,
+                "options": [
+                    "Talle 8",
+                    "Talle 10",
+                    "Talle 12",
+                    "Talle 14",
+                    "Talle 16"
+                ]
+            },
+            {
+                "label": "Talle adultos",
+                "price": 30000,
+                "options": [
+                    "Small",
+                    "Medium",
+                    "Large"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "musculosa-blanca",
+        "title": "Musculosa blanca",
+        "description": "Musculosa blanca de alta calidad.",
+        "images": [
+            "/images/products/product-4.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle niños",
+                "price": 25000,
+                "options": [
+                    "Talle 8",
+                    "Talle 10",
+                    "Talle 12",
+                    "Talle 14",
+                    "Talle 16"
+                ]
+            },
+            {
+                "label": "Talle adultos",
+                "price": 30000,
+                "options": [
+                    "Small",
+                    "Medium",
+                    "Large"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "manta-invierno",
+        "title": "Manta de invierno",
+        "description": "Manta de invierno de alta calidad.",
+        "images": [
+            "/images/products/product-5.jpg"
+        ],
+        "selections": [
+            {
+                "label": "Talle único",
+                "price": 35000,
+                "options": [
+                    "Talle único"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "equipo-top-y-short",
+        "title": "Equipo (top y short)",
+        "description": "Conjunto oficial de alta competencia Hacoaj 2026. Microfibra de primera calidad con lycra.",
+        "images": [
+            "/images/products/product-6.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle niños",
+                "price": 40000,
+                "options": [
+                    "Talle 6",
+                    "Talle 8",
+                    "Talle 10",
+                    "Talle 12",
+                    "Talle 14",
+                    "Talle 16"
+                ]
+            },
+            {
+                "label": "Talle adultos",
+                "price": 45000,
+                "options": [
+                    "Small",
+                    "Medium",
+                    "Large"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "neceser-hacoaj",
+        "title": "Neceser Hacoaj",
+        "description": "Neceser gimnasia Artística (con brillos, plancha de stickers Hacoaj y colita de pelo).",
+        "images": [
+            "/images/products/product-7.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle único",
+                "price": 10000,
+                "options": [
+                    "Talle único"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "cueros-con-correa",
+        "title": "Cueros con correa",
+        "description": "Cueros con correa de alta calidad.",
+        "images": [
+            "/images/products/product-8.png"
+        ],
+        "selections": [
+            {
+                "label": "Talle",
+                "price": 40000,
+                "options": [
+                    "Talle 0",
+                    "Talle 1",
+                    "Talle 2",
+                    "Talle 3"
+                ]
+            }
+        ]
+    }
+]
