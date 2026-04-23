@@ -1,5 +1,21 @@
 .carousel-wrapper {
     overflow: hidden;
+    background-color: #f8f9fa;
+}
+.carousel-img {
+    object-fit: cover;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.carousel-dot-active {
+    background-color: var(--bs-primary);
+}
+.carousel-dot-inactive {
+    background-color: var(--bs-secondary);
+    opacity: 0.5;
 }
 .control-btn:hover {
     opacity: 1 !important;

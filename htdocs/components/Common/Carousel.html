@@ -1,13 +1,11 @@
 <div
-     class="position-relative w-100 h-100 carousel-wrapper"
-     style="background-color: #f8f9fa">
+     class="position-relative w-100 h-100 carousel-wrapper">
     <!-- Render active image -->
     <div
          class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
         <!-- Single Image Display -->
         <img
-             class="w-100 h-100 fade-in"
-             style="object-fit: cover"
+             class="w-100 h-100 fade-in carousel-img"
              src="(($currentImage))"
              alt="Producto" />
     </div>
@@ -36,11 +34,14 @@
     <div
          fw-if="$hasMultiple"
          class="position-absolute bottom-0 start-0 w-100 d-flex justify-content-center gap-2 pb-2 z-index-2">
-        <div
-             fw-each="img in images"
-             onclick="((this)).goTo(images.indexOf(img))"
-             class="carousel-dot cursor-pointer transition-transform"
-             style="width: 8px; height: 8px; border-radius: 50%"
-             fw-class="images.indexOf(img) == activeIndex ? 'bg-primary' : 'bg-secondary opacity-50'"></div>
+        <div fw-each="dot in dots">
+            <div
+                 fw-if="dot.isActive"
+                 class="carousel-dot carousel-dot-active"></div>
+            <div
+                 fw-if="!dot.isActive"
+                 onclick="((this)).goTo(((dot.index)))"
+                 class="carousel-dot carousel-dot-inactive cursor-pointer"></div>
+        </div>
     </div>
 </div>

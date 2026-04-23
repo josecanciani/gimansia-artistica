@@ -10,6 +10,9 @@ export class Carousel extends Component {
     /** @type {number} */
     activeIndex = 0;
 
+    /** @type {Array<{isActive: boolean, index: number}>} */
+    dots = [];
+
     /**
      * URL actual en base al indice.
      * @returns {string} current image url
@@ -27,6 +30,23 @@ export class Carousel extends Component {
     }
 
     /**
+     * Initialize the carousel and build the initial dots.
+     */
+    async init() {
+        this.#buildDots();
+    }
+
+    /**
+     * Rebuild dot indicator data with semantic active state.
+     */
+    #buildDots() {
+        this.dots = this.images.map((_, i) => ({
+            isActive: i === this.activeIndex,
+            index: i,
+        }));
+    }
+
+    /**
      * Increment the carousel
      */
     next() {
@@ -35,6 +55,7 @@ export class Carousel extends Component {
         } else {
             this.activeIndex = 0;
         }
+        this.#buildDots();
         this.react();
     }
 
@@ -47,6 +68,7 @@ export class Carousel extends Component {
         } else {
             this.activeIndex = this.images.length - 1;
         }
+        this.#buildDots();
         this.react();
     }
 
@@ -56,6 +78,7 @@ export class Carousel extends Component {
      */
     goTo(index) {
         this.activeIndex = index;
+        this.#buildDots();
         this.react();
     }
 }
