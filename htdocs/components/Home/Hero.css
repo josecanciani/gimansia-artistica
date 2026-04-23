@@ -1,0 +1,57 @@
+.hero-section {
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.9) 0%, rgba(224, 234, 252, 0.9) 100%);
+    padding-top: 80px;
+}
+
+.hero-bg-shape-1 {
+    width: 60vw;
+    height: 60vw;
+    background: linear-gradient(135deg, #0033a015, #4d73d115);
+    top: -20%;
+    right: -10%;
+    z-index: 0;
+    filter: blur(60px);
+}
+
+.hero-bg-shape-2 {
+    width: 40vw;
+    height: 40vw;
+    background: linear-gradient(135deg, #0033a010, transparent);
+    bottom: -10%;
+    left: -5%;
+    z-index: 0;
+    filter: blur(40px);
+}
+
+.hero-badge {
+    border-color: var(--hacoaj-blue-light) !important;
+}
+
+.hero-description {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.hero-glass-overlay {
+    opacity: 0.7;
+}
+
+.hero-img-1 {
+    width: 45%;
+    max-height: 250px;
+    object-fit: cover;
+    transform: rotate(-5deg);
+    z-index: 2;
+}
+
+.hero-img-2 {
+    width: 45%;
+    max-height: 250px;
+    object-fit: cover;
+    transform: rotate(5deg) translateX(-20px);
+    z-index: 1;
+}
+
+.hero-collection-title {
+    color: var(--hacoaj-blue-dark);
+}

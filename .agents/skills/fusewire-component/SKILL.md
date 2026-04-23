@@ -534,7 +534,7 @@ afterRender() {
 ## Component decomposition
 
 A component should have one clear responsibility. When something starts feeling
-like it has two concerns, it probably needs to be two components.
+like it has two concerns, it probably needs to be two components. A rule that can be used to decide when to create a component is to think about the complexity of the html code, the benefit of reusing a section, or if you start mixing different responsabilities into the same compoment.
 
 **The clearest signal to split:** a list where each item has its own rendering
 logic or non-trivial state. The parent manages the list; a child component

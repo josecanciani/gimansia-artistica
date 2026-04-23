@@ -1,0 +1,8 @@
+.header-nav {
+    border-radius: 50px;
+}
+
+.header-logo {
+    height: 55px;
+    object-fit: contain;
+}
