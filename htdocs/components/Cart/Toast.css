@@ -1,0 +1,43 @@
+@keyframes slideInRight {
+    0% {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes progressShrink {
+    0% {
+        width: 100%;
+        border-radius: 0 0 1rem 1rem;
+    }
+
+    100% {
+        width: 0%;
+        border-radius: 0 0 0 1rem;
+    }
+}
+
+.toast-notification {
+    top: 85px;
+    right: 20px;
+    min-width: 250px;
+    z-index: 2000;
+    animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast-icon-circle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.toast-progress-bar {
+    width: 100%;
+    height: 4px !important;
+    animation: progressShrink 3s linear forwards;
+}

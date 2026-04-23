@@ -1,5 +1,5 @@
 <div class="card border-0 shadow-sm rounded-4 h-100 w-100 glassy-product">
-    <div class="position-relative rounded-top-4 overflow-hidden" style="background-color: #f8f9fa; padding-top: 100%;">
+    <div class="position-relative rounded-top-4 overflow-hidden card-image-frame">
         <!-- Carousel Component mounts identically to standard HTML wrappers -->
         <div class="position-absolute top-0 start-0 w-100 h-100">
             ((carousel))
@@ -8,7 +8,7 @@
 
     <div class="card-body d-flex flex-column p-4">
         <h5 class="fw-bold mb-1 text-dark">((title))</h5>
-        <p class="text-muted small mb-4" style="flex-grow: 1;">((description))</p>
+        <p class="text-muted small mb-4 flex-grow-1">((description))</p>
 
         <h6 fw-if="$totalPrice > 0" class="text-primary fw-bold mb-3">Total a abonar: $ (($formattedTotal))</h6>
 

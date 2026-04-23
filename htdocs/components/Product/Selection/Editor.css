@@ -1,0 +1,22 @@
+.editor-modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1060 !important;
+}
+
+.editor-modal-content {
+    max-height: 90vh;
+}
+
+.quantity-controls {
+    min-width: 125px;
+}
+
+.quantity-btn {
+    width: 36px;
+    height: 36px;
+    touch-action: manipulation;
+}
+
+.editor-spacer {
+    width: 80px;
+}

@@ -1,0 +1,48 @@
+/* Forzar scrollbar visible permanentemente para móviles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 51, 160, 0.4);
+    border-radius: 10px;
+}
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 51, 160, 0.4) transparent;
+}
+
+.cart-modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1060 !important;
+}
+
+.cart-modal-content {
+    max-height: 85vh;
+}
+
+.cart-modal-small-text {
+    font-size: 0.75rem;
+}
+
+.cart-modal-body-scroll {
+    overflow-y: scroll !important;
+}
+
+.cart-modal-product-title {
+    font-size: 0.85rem;
+}
+
+.cart-modal-item-text {
+    font-size: 0.8rem;
+}
+
+.cart-modal-count-badge {
+    font-size: 0.65rem;
+}
+
+.alert-highlight {
+    background-color: #fff8e1;
+}

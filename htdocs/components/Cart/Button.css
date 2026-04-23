@@ -1,0 +1,21 @@
+.cart-btn-active {
+    transition: all 0.2s;
+}
+
+.cart-badge-count {
+    font-size: 0.6rem;
+    padding: 0.25em 0.4em;
+}
+
+.cart-btn-details {
+    line-height: 1;
+}
+
+.cart-btn-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.cart-btn-empty {
+    opacity: 0.8;
+}
