@@ -1,5 +1,5 @@
 ---
-name: fusewire-component
+name: Writing FuseWire Components
 description: >
   How to write well-designed FuseWire client-side components for this project.
   Use this skill whenever the user asks to create, design, or review a FuseWire
@@ -7,15 +7,9 @@ description: >
   "how should I structure Y". Covers file layout, vars vs private state,
   component decomposition, lifecycle hooks, libraries, and type hinting for
   child components.
-
 ---
 
 # Writing FuseWire Components
-
-## Architecture & Core Constraints
-
--   **Deep DOM Hierarchies & Modals:** By design, `this.createChild()` binds dynamically generated components precisely onto identically named HTML placeholder tokens (e.g. `((myChild))`), meaning the child DOM is physically injected as a nested sub-tree of the parent. Modals, drop-overs, or absolute elements will inherit their exact Parent's CSS `z-index` and Stacking Contexts constraints natively. Be hyper-aware when debugging `z-index`! Modals designed to overlay the view globally (like a Checkout cart) should be designed to be spawned safely at the absolute `Root` layout (e.g. `Home` core), not trapped inside deep iterative lists (e.g. `ProductCard`).
--   **Debug Console Void:** Strict test purity dictates that the base `Reactor` system defaults to aggressively suppressing core output logs generated via `this.console.log` entirely. Never attempt to utilize `this.console` instances to emit GUI warnings locally! Always fall back exclusively to VANILLA natively-scoped DOM invocations (i.e. `window.console.log()`) to capture UI verifications.
 
 ## File layout
 
@@ -104,6 +98,45 @@ Private helper methods also use `#`:
 
 The rule of thumb: if the template needs to know about it, it's a var. If it's
 bookkeeping for the component's own logic, it's private.
+
+### No CSS class names in JavaScript
+
+JS files must **never** contain CSS class names or visual styling strings. Vars
+and loop items should expose **semantic data** (booleans, enums, counts) and let
+the HTML template decide which CSS classes to apply.
+
+```javascript
+// WRONG: JS decides styling
+#buildDots() {
+    this.dots = this.images.map((_, i) => ({
+        cssClass: i === this.activeIndex ? 'bg-primary' : 'bg-secondary opacity-50',
+        index: i,
+    }));
+}
+```
+
+```javascript
+// RIGHT: JS exposes semantic state
+#buildDots() {
+    this.dots = this.images.map((_, i) => ({
+        isActive: i === this.activeIndex,
+        index: i,
+    }));
+}
+```
+
+The template uses `fw-if` to branch styling based on the semantic value:
+
+```html
+<div fw-each="dot in dots">
+    <div fw-if="dot.isActive" class="dot dot-active"></div>
+    <div fw-if="!dot.isActive" class="dot dot-inactive cursor-pointer"
+         onclick="((this)).goTo(((dot.index)))"></div>
+</div>
+```
+
+This keeps the separation clean: **JS owns data, HTML owns structure and class
+assignment, CSS owns visual presentation.**
 
 ---
 
@@ -196,6 +229,17 @@ async init() {
 
 The template places the child via `((logs))` (or the specific var name). The
 engine auto-mounts it — no manual wiring needed.
+
+### Modals and overlays
+
+`createChild()` nests the child DOM physically inside the parent's subtree.
+This means child components inherit the parent's CSS stacking context. A modal
+or overlay spawned deep inside a list component (e.g., inside a `ProductCard`)
+will be trapped under the parent's `z-index` and cannot overlay the full page
+as intended.
+
+Spawn page-level modals and overlays at the root component (e.g., `Home`) so
+they sit at the top of the stacking context hierarchy.
 
 ### Subscribing to child events (buffered references)
 
@@ -485,6 +529,40 @@ To properly apply layout styles to a child component from the parent (for exampl
 
 ---
 
+## Dynamic CSS classes
+
+When a template builds class names via variable interpolation, the CSS file must
+declare which classes are generated at runtime. Without this, the
+`css-class-consistency` check flags them as unused.
+
+Add a `fw-dynamic-classes` comment at the top of the component's `.css` file
+listing every class that will be produced by interpolation:
+
+```css
+/* fw-dynamic-classes: log-warn, log-error, log-debug */
+
+.console-line { padding: 1px 0.5rem; }
+.log-warn { color: #e5c07b; }
+.log-error { color: #e06c75; }
+.log-debug { color: #61afef; }
+```
+
+```html
+<div class="log-((level)) console-line">((message))</div>
+```
+
+When `level` is `'warn'`, the rendered output is
+`<div class="log-warn console-line">`. The annotation exempts `log-warn`,
+`log-error`, and `log-debug` from the "CSS class not used in HTML" rule.
+
+Plan for this annotation when designing class names that depend on component
+vars. If the `css-class-consistency` check flags other class mismatches
+(external framework classes, child component scoping, etc.), follow the fix
+instructions in the check output — it tells you exactly what annotation or
+change to apply.
+
+---
+
 ## Scoped DOM queries
 
 When a component needs direct DOM access (scrolling, measuring, third-party
@@ -531,10 +609,24 @@ afterRender() {
 
 ---
 
+## Debugging: this.console vs window.console
+
+`this.console` is the framework's in-app logger — it routes output to the
+Console component visible in the UI. In test environments and when no Console
+component is mounted, `this.console` output is silently discarded.
+
+When debugging component behavior, use `window.console.log()` (or
+`window.console.error()`, etc.) to ensure output always reaches the terminal
+or browser devtools regardless of whether a Console component is mounted.
+
+---
+
 ## Component decomposition
 
 A component should have one clear responsibility. When something starts feeling
-like it has two concerns, it probably needs to be two components. A rule that can be used to decide when to create a component is to think about the complexity of the html code, the benefit of reusing a section, or if you start mixing different responsabilities into the same compoment.
+like it has two concerns, it probably needs to be two components. Reusability
+is another signal — if the same UI pattern appears in multiple places, extract
+it into a shared component (e.g., `Common/Carousel`).
 
 **The clearest signal to split:** a list where each item has its own rendering
 logic or non-trivial state. The parent manages the list; a child component
@@ -597,3 +689,27 @@ export class Counter extends Component {
     }
 }
 ```
+
+---
+
+## Quality checks (required after component changes)
+
+After creating or modifying a component (JS, HTML, or CSS), **always run the
+quality checks** before considering your work done.
+
+The check runner lives at `checks/run.js` inside the `@fusewire/client` package:
+
+| Installation method | Runner path |
+|---|---|
+| npm dependency | `node_modules/@fusewire/client/checks/run.js` |
+| Git submodule | `<submodule-path>/checks/run.js` (e.g. `lib/fusewire/checks/run.js`) |
+
+**After creating or modifying a component, prefer the single-component form:**
+
+```bash
+node <runner-path> <componentDir> <componentName>
+```
+
+The runner reads project configuration from `.fusewire.json` in the working
+directory. Violation messages include specific fix instructions — follow them
+directly. Fix all violations before presenting your changes to the user.

@@ -17,7 +17,7 @@ This is the central development profile and constraint guide for the Gimnasia Ar
 
 ## Development Guidelines
 
-All agents contributing to this project MUST abide by these rules, alongside the `fusewire-component` skill specification defining proper Component construction.
+All agents contributing to this project MUST abide by these rules, alongside the `writing-fusewire-components` skill specification defining proper Component construction.
 
 ## Code Style
 
@@ -27,6 +27,7 @@ All agents contributing to this project MUST abide by these rules, alongside the
 - **No hardcoded duplicates:** Never repeat a value that is already stored in a variable or derived from code. If a path, name, or label appears in log messages, error messages, or comments, reference the variable — don't hardcode the string a second time.
 - **No defensive fallbacks:** Do not use optional chaining (`?.`), ternary fallbacks (`x ? x.prop : ''`), `|| defaultValue`, or silent early returns to mask values that should always be present. If state is required, access it directly and let the error surface. Defensive fallbacks hide bugs. Legitimate uses: public lookup methods returning null for missing keys, optional function parameters with defaults, and API boundaries where input is untrusted.
 - **JSDoc Strict Enforcement:** ESLint `typecheck` is meticulously strict. You CANNOT bypass JSDoc linting by solely specifying `@returns` or `@param` annotations. You **MUST ALWAYS** include a native, human-readable Block Description prior to the annotations inside the JSDoc tags for every newly created or modified method/getter.
+- **No CSS class names in JavaScript:** JS files must never contain CSS class names or visual styling strings. Components should expose semantic data properties (booleans, enums, counts) and let the HTML template decide which CSS classes to apply. For example, a dot indicator should expose `isActive: true` — not `cssClass: 'bg-primary'`. The template uses `fw-if` or similar directives to branch styling based on the semantic value. This keeps the separation of concerns clean: JS owns data, HTML owns structure and class assignment, CSS owns visual presentation.
 
 ### Scaffolding
 
@@ -36,4 +37,4 @@ All agents contributing to this project MUST abide by these rules, alongside the
 
 ### Reference
 
-- Check `.agents/skills/fusewire-component/SKILL.md` to learn how to create and manage the components for this site securely, scalably, and interactively.
+- Check `.agents/skills/writing-fusewire-components/SKILL.md` to learn how to create and manage the components for this site securely, scalably, and interactively.
