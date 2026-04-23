@@ -20,14 +20,19 @@ export class Editor extends Component {
      * Parsing dinámico inicial y seteo de la UI draft
      */
     async init() {
-        this.draftOptions = this.groups.map(g => {
+        this.draftOptions = this.groups.map((g) => {
             return {
                 label: g.label,
                 priceFormatted: g.price.toLocaleString('es-AR'),
-                options: g.options.map(opt => {
+                options: g.options.map((opt) => {
                     const payload = JSON.stringify({ group: g.label, option: opt, price: g.price });
-                    return { label: opt, price: g.price, payload, count: this.initialCounts[payload] || 0 };
-                })
+                    return {
+                        label: opt,
+                        price: g.price,
+                        payload,
+                        count: this.initialCounts[payload] || 0,
+                    };
+                }),
             };
         });
 
@@ -42,7 +47,11 @@ export class Editor extends Component {
      */
     get $draftTotalPrice() {
         let sum = 0;
-        this.draftOptions.forEach(g => g.options.forEach(o => { sum += o.count * o.price; }));
+        this.draftOptions.forEach((g) =>
+            g.options.forEach((o) => {
+                sum += o.count * o.price;
+            }),
+        );
         return sum;
     }
 
@@ -58,7 +67,11 @@ export class Editor extends Component {
      * Vacía el layout de borrador local
      */
     clear() {
-        this.draftOptions.forEach(g => g.options.forEach(o => { o.count = 0; }));
+        this.draftOptions.forEach((g) =>
+            g.options.forEach((o) => {
+                o.count = 0;
+            }),
+        );
         this.react();
     }
 
@@ -76,8 +89,8 @@ export class Editor extends Component {
     handleIncrement(event) {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
-        this.draftOptions.forEach(g => {
-            const match = g.options.find(o => o.payload === payload);
+        this.draftOptions.forEach((g) => {
+            const match = g.options.find((o) => o.payload === payload);
             if (match) match.count++;
         });
         this.react();
@@ -90,8 +103,8 @@ export class Editor extends Component {
     handleDecrement(event) {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
-        this.draftOptions.forEach(g => {
-            const match = g.options.find(o => o.payload === payload);
+        this.draftOptions.forEach((g) => {
+            const match = g.options.find((o) => o.payload === payload);
             if (match && match.count > 0) match.count--;
         });
         this.react();
@@ -103,8 +116,8 @@ export class Editor extends Component {
     accept() {
         /** @type {Record<string, number>} */
         const countsMap = {};
-        this.draftOptions.forEach(g => {
-            g.options.forEach(opt => {
+        this.draftOptions.forEach((g) => {
+            g.options.forEach((opt) => {
                 if (opt.count > 0) {
                     countsMap[opt.payload] = opt.count;
                 }

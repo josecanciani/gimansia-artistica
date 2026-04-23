@@ -65,16 +65,20 @@ export class Summary extends Component {
     toggle() {
         if (!this.isOpen) {
             this.editor = /** @type {import('./Editor.js').Editor} */ (
-                this.createChild('Product/Selection/Editor', `editor-${Math.random().toString(36).substring(2)}`, {
-                    groups: this.groups,
-                    initialCounts: this.confirmedCounts
-                })
+                this.createChild(
+                    'Product/Selection/Editor',
+                    `editor-${Math.random().toString(36).substring(2)}`,
+                    {
+                        groups: this.groups,
+                        initialCounts: this.confirmedCounts,
+                    },
+                )
             );
-            
+
             // Listeners locales para este runtime de editor
             this.editor.on('closed', () => this.close());
             this.editor.on('confirmed', (newCountsMap) => this.#handleCommit(newCountsMap));
-            
+
             this.isOpen = true;
             this.react();
         } else {
@@ -89,7 +93,7 @@ export class Summary extends Component {
     #handleCommit(newCounts) {
         this.confirmedCounts = newCounts;
         this.close();
-        
+
         // Translada al layout tradicional
         const items = [];
         for (const [payload, count] of Object.entries(this.confirmedCounts)) {
@@ -99,11 +103,11 @@ export class Summary extends Component {
                     id: Math.random().toString(36).substring(2, 11),
                     group: meta.group,
                     option: meta.option,
-                    price: meta.price
+                    price: meta.price,
                 });
             }
         }
-        
+
         // Transmite de vuelta a su padre (Product/Card)
         this.emit('optionsChanged', items);
     }

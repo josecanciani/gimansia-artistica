@@ -6,7 +6,7 @@ import { Component } from '@fusewire/client/component.js';
 export class Toast extends Component {
     /** @type {boolean} */
     isVisible = false;
-    
+
     /** @type {string} */
     formattedTotal = '0';
 
@@ -23,12 +23,12 @@ export class Toast extends Component {
     show(items) {
         const total = items.reduce((acc, curr) => acc + curr.totalPrice, 0);
         this.formattedTotal = total.toLocaleString('es-AR');
-        
+
         this.isVisible = true;
         this.react();
 
         if (this.timeoutId) window.clearTimeout(this.timeoutId);
-        
+
         this.timeoutId = window.setTimeout(() => {
             this.isVisible = false;
             this.react();

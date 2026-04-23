@@ -58,7 +58,7 @@ export class Showcase extends Component {
         } else {
             delete this.cartMap[data.id];
         }
-        
+
         this.emit('cartUpdated', Object.values(this.cartMap));
     }
 }

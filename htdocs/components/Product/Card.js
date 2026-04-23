@@ -32,13 +32,15 @@ export class Card extends Component {
     async init() {
         // Mount image carousel
         this.carousel = /** @type {import('../Common/Carousel.js').Carousel} */ (
-            this.createChild('Common/Carousel', `carousel-${this.productId}`, { images: this.images })
+            this.createChild('Common/Carousel', `carousel-${this.productId}`, {
+                images: this.images,
+            })
         );
 
         // Mount single unified variant selection component
         this.summary = /** @type {import('./Selection/Summary.js').Summary} */ (
             this.createChild('Product/Selection/Summary', `sel-${this.productId}`, {
-                groups: this.selections
+                groups: this.selections,
             })
         );
         this.summary.on('optionsChanged', (items) => this.#handleSelectionChange(items));

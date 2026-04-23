@@ -14,7 +14,7 @@ export class Modal extends Component {
     isOpen = false;
 
     /** Overridden method */
-    async init() { }
+    async init() {}
 
     /**
      * Dinero sumarizado
@@ -40,27 +40,32 @@ export class Modal extends Component {
         this.items = newItems;
 
         // Build the groupedItems array strictly for UI rendering
-        this.groupedItems = this.items.map(product => {
+        this.groupedItems = this.items.map((product) => {
             /** @type {Record<string, any>} */
             const grouped = {};
 
             for (const item of product.selections) {
                 const key = `${item.group} - ${item.option}`;
                 if (!grouped[key]) {
-                    grouped[key] = { group: item.group, option: item.option, count: 0, price: item.price };
+                    grouped[key] = {
+                        group: item.group,
+                        option: item.option,
+                        count: 0,
+                        price: item.price,
+                    };
                 }
                 grouped[key].count++;
             }
 
             return {
                 title: product.title,
-                selections: Object.values(grouped).map(g => ({
+                selections: Object.values(grouped).map((g) => ({
                     group: g.group,
                     option: g.option,
                     count: g.count,
                     countBadge: g.count > 1 ? `x${g.count}` : '',
-                    totalLinePrice: (g.count * g.price).toLocaleString('es-AR')
-                }))
+                    totalLinePrice: (g.count * g.price).toLocaleString('es-AR'),
+                })),
             };
         });
 
@@ -88,7 +93,7 @@ export class Modal extends Component {
 
         let text = `Hola! Me gustaría confirmar mi pedido de indumentaria de Hacoaj G.A:\n\n`;
 
-        this.items.forEach(product => {
+        this.items.forEach((product) => {
             text += `*${product.title}*\n`;
 
             /** @type {Record<string, any>} */
