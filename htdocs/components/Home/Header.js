@@ -1,21 +1,33 @@
-import { Component } from "@fusewire/client/component.js";
+import { Component } from '@fusewire/client/component.js';
 
 /**
  * Header component for the Home page.
  */
 export class Header extends Component {
     /** @type {import('../Cart/Button.js').Button} */
-    cartButton = null;
+    cartButton = /** @type {import('../Cart/Button.js').Button} */ (/** @type {unknown} */ (null));
+
+    /** @type {import('@fusewire/client/component.js').PortalChild} */
+    cartModal = /** @type {import('@fusewire/client/component.js').PortalChild} */ (/** @type {unknown} */ (null));
 
     /**
      * Initializes the Header component and creates the cart button child.
      */
     async init() {
         this.cartButton = /** @type {import('../Cart/Button.js').Button} */ (
-            this.createChild("Cart/Button", "cartButton", {})
+            this.createChild('Cart/Button', 'cartButton', {})
         );
 
-        this.cartButton.on("openModal", () => this.emit("openCartModal"));
+        this.cartModal = /** @type {import('@fusewire/client/component.js').PortalChild} */ (
+            this.createPortalChild('Cart/Modal', 'cartModal', {})
+        );
+
+        this.cartButton.on('openModal', () => {
+            const modal = /** @type {import('../Cart/Modal.js').Modal} */ (
+                this.cartModal.getChild()
+            );
+            modal.open();
+        });
     }
 
     /**
@@ -24,7 +36,7 @@ export class Header extends Component {
      */
     scrollToHome(e) {
         if (e) e.preventDefault();
-        this.emit("scrollToHome");
+        this.emit('scrollToHome');
     }
 
     /**
@@ -33,7 +45,7 @@ export class Header extends Component {
      */
     scrollToCatalog(e) {
         if (e) e.preventDefault();
-        this.emit("scrollToCatalog");
+        this.emit('scrollToCatalog');
     }
 
     /**
@@ -42,14 +54,16 @@ export class Header extends Component {
      */
     scrollToContact(e) {
         if (e) e.preventDefault();
-        this.emit("scrollToContact");
+        this.emit('scrollToContact');
     }
 
     /**
      * Updates the cart items in the button.
-     * @param {Array} items The items in the cart.
+     * @param {Array<any>} items The items in the cart.
      */
     updateCart(items) {
         this.cartButton.updateCart(items);
+        const modal = /** @type {import('../Cart/Modal.js').Modal} */ (this.cartModal.getChild());
+        modal.updateCart(items);
     }
 }

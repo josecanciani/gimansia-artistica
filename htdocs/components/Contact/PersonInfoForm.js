@@ -10,7 +10,6 @@ export class PersonInfoForm extends Component {
      */
     submitForm(event) {
         event.preventDefault();
-        // eslint-disable-next-line jsdoc/no-undefined-types
         const form = /** @type {HTMLFormElement} */ (event.target);
         this.#processSubmission(form, 'email');
     }
@@ -21,7 +20,6 @@ export class PersonInfoForm extends Component {
      */
     submitWhatsApp(event) {
         event.preventDefault();
-        // eslint-disable-next-line jsdoc/no-undefined-types
         const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
         if (form) {
             this.#processSubmission(form, 'whatsapp');
@@ -36,13 +34,13 @@ export class PersonInfoForm extends Component {
     #processSubmission(form, method) {
         if (!form.checkValidity()) {
             form.classList.add('was-validated');
-            
+
             // Scroll to the first invalid element so the user knows what's wrong
             const firstInvalidElement = form.querySelector(':invalid');
             if (firstInvalidElement) {
                 firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-            
+
             return;
         }
 
@@ -58,7 +56,8 @@ export class PersonInfoForm extends Component {
             mensaje: formData.get('mensaje'),
         };
 
-        const text = `Hola! Tengo una consulta:\n\n` +
+        const text =
+            `Hola! Tengo una consulta:\n\n` +
             `Sede: ${data.sede}\n` +
             `Modalidad: ${data.modalidad}\n` +
             `Gimnasta: ${data.nombre}\n` +
@@ -84,7 +83,6 @@ export class PersonInfoForm extends Component {
      * Resets the form fields.
      */
     reset() {
-        // eslint-disable-next-line jsdoc/no-undefined-types
         const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
         if (form) {
             form.reset();

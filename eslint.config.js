@@ -62,6 +62,7 @@ export default [
                 {
                     definedTypes: [
                         'HTMLElement',
+                        'HTMLFormElement',
                         'HTMLDivElement',
                         'HTMLInputElement',
                         'Element',

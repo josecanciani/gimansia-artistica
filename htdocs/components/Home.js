@@ -1,4 +1,4 @@
-import { Component } from "@fusewire/client/component.js";
+import { Component } from '@fusewire/client/component.js';
 
 /**
  * Main Home component.
@@ -8,78 +8,61 @@ export class Home extends Component {
     showFeatures = false;
 
     /** @type {import('./Home/Header.js').Header} */
-    header = null;
+    header = /** @type {import('./Home/Header.js').Header} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Home/Hero.js').Hero} */
-    hero = null;
+    hero = /** @type {import('./Home/Hero.js').Hero} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Home/Features.js').Features} */
-    features = null;
+    features = /** @type {import('./Home/Features.js').Features} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Catalog/Showcase.js').Showcase} */
-    showcase = null;
+    showcase = /** @type {import('./Catalog/Showcase.js').Showcase} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Contact/Page.js').Page} */
-    contactPage = null;
+    contactPage = /** @type {import('./Contact/Page.js').Page} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Home/Footer.js').Footer} */
-    footer = null;
-
-    /** @type {import('./Cart/Toast.js').Toast} */
-    cartToast = null;
-
-    /** @type {import('./Cart/Modal.js').Modal} */
-    cartModal = null;
+    footer = /** @type {import('./Home/Footer.js').Footer} */ (/** @type {unknown} */ (null));
 
     /**
      * Inicialización del componente.
      */
     async init() {
         this.header = /** @type {import('./Home/Header.js').Header} */ (
-            this.createChild("Home/Header", "header", {})
+            this.createChild('Home/Header', 'header', {})
         );
 
         this.hero = /** @type {import('./Home/Hero.js').Hero} */ (
-            this.createChild("Home/Hero", "hero", {})
+            this.createChild('Home/Hero', 'hero', {})
         );
 
         this.features = /** @type {import('./Home/Features.js').Features} */ (
-            this.createChild("Home/Features", "features", {})
+            this.createChild('Home/Features', 'features', {})
         );
 
         this.contactPage = /** @type {import('./Contact/Page.js').Page} */ (
-            this.createChild("Contact/Page", "contactPage", {})
+            this.createChild('Contact/Page', 'contactPage', {})
         );
 
         this.footer = /** @type {import('./Home/Footer.js').Footer} */ (
-            this.createChild("Home/Footer", "footer", {})
-        );
-
-        this.cartToast = /** @type {import('./Cart/Toast.js').Toast} */ (
-            this.createChild("Cart/Toast", "cartToast", {})
-        );
-
-        this.cartModal = /** @type {import('./Cart/Modal.js').Modal} */ (
-            this.createChild("Cart/Modal", "cartModal", {})
+            this.createChild('Home/Footer', 'footer', {})
         );
 
         this.showcase =
             /** @type {import('./Catalog/Showcase.js').Showcase} */ (
-                this.createChild("Catalog/Showcase", "catalog", {})
+                this.createChild('Catalog/Showcase', 'catalog', {})
             );
 
-        this.showcase.on("cartUpdated", (items) => {
+        this.showcase.on('cartUpdated', (items) => {
             this.header.updateCart(items);
-            this.cartToast.show(items);
-            this.cartModal.updateCart(items);
         });
 
-        this.header.on("openCartModal", () => this.cartModal.open());
-        this.header.on("scrollToHome", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-        this.header.on("scrollToCatalog", () => this.scrollToCatalog());
-        this.header.on("scrollToContact", () => this.contactPage.scrollIntoView());
+        this.header.on('scrollToHome', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        this.header.on('scrollToCatalog', () => this.scrollToCatalog());
+        this.header.on('scrollToContact', () => this.contactPage.scrollIntoView());
 
-        this.hero.on("scrollToCatalog", () => this.scrollToCatalog());
+        this.hero.on('scrollToCatalog', () => this.scrollToCatalog());
     }
 
     /**

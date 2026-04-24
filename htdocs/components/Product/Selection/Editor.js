@@ -4,7 +4,7 @@ import { Component } from '@fusewire/client/component.js';
  * Componente modal para interactuar las cantidades sobre el draft en vivo.
  */
 export class Editor extends Component {
-    /** @type {Array<Record<string, any>>} */
+    /** @type {Array<{label: string, price: number, options: string[]}>} */
     groups = [];
 
     /** @type {Record<string, number>} */
@@ -13,7 +13,7 @@ export class Editor extends Component {
     /** @type {string} */
     colClass = 'col-md-12';
 
-    /** @type {Array<Record<string, any>>} */
+    /** @type {Array<{label: string, priceFormatted: string, options: {label: string, price: number, payload: string, count: number}[]}>} */
     draftOptions = [];
 
     /**
@@ -24,7 +24,7 @@ export class Editor extends Component {
             return {
                 label: g.label,
                 priceFormatted: g.price.toLocaleString('es-AR'),
-                options: g.options.map((opt) => {
+                options: g.options.map((/** @type {string} */ opt) => {
                     const payload = JSON.stringify({ group: g.label, option: opt, price: g.price });
                     return {
                         label: opt,
@@ -48,7 +48,7 @@ export class Editor extends Component {
     get $draftTotalPrice() {
         let sum = 0;
         this.draftOptions.forEach((g) =>
-            g.options.forEach((o) => {
+            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => {
                 sum += o.count * o.price;
             }),
         );
@@ -68,7 +68,7 @@ export class Editor extends Component {
      */
     clear() {
         this.draftOptions.forEach((g) =>
-            g.options.forEach((o) => {
+            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => {
                 o.count = 0;
             }),
         );
@@ -90,7 +90,7 @@ export class Editor extends Component {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
         this.draftOptions.forEach((g) => {
-            const match = g.options.find((o) => o.payload === payload);
+            const match = g.options.find((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => o.payload === payload);
             if (match) match.count++;
         });
         this.react();
@@ -104,7 +104,7 @@ export class Editor extends Component {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
         this.draftOptions.forEach((g) => {
-            const match = g.options.find((o) => o.payload === payload);
+            const match = g.options.find((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => o.payload === payload);
             if (match && match.count > 0) match.count--;
         });
         this.react();
@@ -117,7 +117,7 @@ export class Editor extends Component {
         /** @type {Record<string, number>} */
         const countsMap = {};
         this.draftOptions.forEach((g) => {
-            g.options.forEach((opt) => {
+            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ opt) => {
                 if (opt.count > 0) {
                     countsMap[opt.payload] = opt.count;
                 }

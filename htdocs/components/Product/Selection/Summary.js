@@ -14,7 +14,7 @@ export class Summary extends Component {
     confirmedCounts = {};
 
     /** @type {import('./Editor.js').Editor} */
-    editor = null;
+    editor = /** @type {import('./Editor.js').Editor} */ (/** @type {unknown} */ (null));
 
     /**
      * Cachea los datos de base.
@@ -55,7 +55,7 @@ export class Summary extends Component {
      */
     close() {
         this.isOpen = false;
-        this.editor = null;
+        this.editor = /** @type {import('./Editor.js').Editor} */ (/** @type {unknown} */(null));
         this.react();
     }
 

@@ -15,7 +15,8 @@
         "format:html": "html-beautify -r 'htdocs/**/*.html'",
         "html-check": "html-validate 'htdocs/**/*.html'",
         "jsdoc-check": "eslint htdocs/ src/",
-        "typecheck": "tsc -p jsconfig.json --noEmit"
+        "typecheck": "tsc -p jsconfig.json --noEmit",
+        "postinstall": "npm run build:types --prefix node_modules/@fusewire/client"
     },
     "devDependencies": {
         "@playwright/test": "^1.58.2",

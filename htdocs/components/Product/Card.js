@@ -21,10 +21,10 @@ export class Card extends Component {
     shoppingList = [];
 
     /** @type {import('../Common/Carousel.js').Carousel} */
-    carousel = null;
+    carousel = /** @type {import('../Common/Carousel.js').Carousel} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Selection/Summary.js').Summary} */
-    summary = null;
+    summary = /** @type {import('./Selection/Summary.js').Summary} */ (/** @type {unknown} */ (null));
 
     /**
      * Inicialización del componente.

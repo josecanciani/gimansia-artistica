@@ -5,7 +5,7 @@ import { Component } from '@fusewire/client/component.js';
  */
 export class Page extends Component {
     /** @type {import('./PersonInfoForm.js').PersonInfoForm} */
-    personInfoForm = null;
+    personInfoForm = /** @type {import('./PersonInfoForm.js').PersonInfoForm} */ (/** @type {unknown} */ (null));
 
     /**
      * Initializes the component.
@@ -24,6 +24,6 @@ export class Page extends Component {
      * Scrolls the component into view.
      */
     scrollIntoView() {
-        this.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+        /** @type {HTMLElement} */ (this.querySelector('#contact')).scrollIntoView({ behavior: 'smooth' });
     }
 }
