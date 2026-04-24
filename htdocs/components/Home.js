@@ -51,7 +51,7 @@ export class Home extends Component {
 
         this.showcase =
             /** @type {import('./Catalog/Showcase.js').Showcase} */ (
-                this.createChild('Catalog/Showcase', 'catalog', {})
+                this.createChild('Catalog/Showcase', 'showcase', {})
             );
 
         this.showcase.on('cartUpdated', (items) => {
