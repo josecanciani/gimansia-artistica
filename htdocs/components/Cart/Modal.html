@@ -4,24 +4,25 @@
      tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content border-0 shadow-lg cart-modal-content">
-            <div
-                 class="modal-header bg-primary text-white border-bottom-0 pb-2 pt-3 align-items-start">
-                <div>
-                    <h6 class="modal-title fw-bold mb-0">
-                        <i class="bi bi-bag-check-fill me-2"></i>Tu pedido
-                    </h6>
-                    <small
-                           class="text-white-50 lh-1 d-block mt-1 cart-modal-small-text">Resumen de prendas seleccionadas</small>
+            <div class="modal-header bg-primary text-white border-bottom-0 pb-2 pt-3 align-items-start">
+                <div class="d-flex align-items-center gap-2">
+                    <button fw-if="$isStep2" type="button" class="btn btn-link text-white p-0 m-0 border-0 text-decoration-none" onclick="((this)).goToStep1()" aria-label="Volver">
+                        <i class="bi bi-arrow-left fs-5"></i>
+                    </button>
+                    <div>
+                        <h6 class="modal-title fw-bold mb-0">
+                            <i fw-if="$isStep1" class="bi bi-bag-check-fill me-2"></i>
+                            <span fw-if="$isStep1">Tu pedido</span>
+                            <span fw-if="$isStep2">Completá tus datos</span>
+                        </h6>
+                        <small fw-if="$isStep1" class="text-white-50 lh-1 d-block mt-1 cart-modal-small-text">Resumen de prendas seleccionadas</small>
+                        <small fw-if="$isStep2" class="text-white-50 lh-1 d-block mt-1 cart-modal-small-text">Para finalizar la reserva</small>
+                    </div>
                 </div>
-                <button
-                        type="button"
-                        class="btn-close btn-close-white"
-                        aria-label="Cerrar"
-                        onclick="((this)).close()"></button>
+                <button type="button" class="btn-close btn-close-white" aria-label="Cerrar" onclick="((this)).close()"></button>
             </div>
 
-            <div
-                 class="modal-body p-3 overflow-x-hidden custom-scrollbar cart-modal-body-scroll">
+            <div fw-if="$isStep1" class="modal-body p-3 overflow-x-hidden custom-scrollbar cart-modal-body-scroll">
                 <div
                      fw-each="prod in groupedItems"
                      class="mb-3 pb-2 border-bottom border-light">
@@ -47,35 +48,34 @@
                 </div>
             </div>
 
-            <div
-                 class="modal-footer bg-light border-top-0 d-flex flex-column align-items-stretch px-3 py-3 gap-2">
-                <div
-                     class="d-flex justify-content-between align-items-end w-100 mb-1">
+            <div fw-if="$isStep2" class="modal-body p-3 overflow-x-hidden custom-scrollbar cart-modal-body-scroll">
+                ((personForm))
+            </div>
+
+            <div class="modal-footer bg-light border-top-0 d-flex flex-column align-items-stretch px-3 py-3 gap-2">
+                <div class="d-flex justify-content-between align-items-end w-100 mb-1">
                     <span class="fw-bold text-muted small">Total a abonar:</span>
                     <span class="fw-bold text-primary h5 mb-0">$ (($formattedTotal))</span>
                 </div>
-                <button
-                        type="button"
-                        class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2"
-                        onclick="((this)).checkout()">
-                    Enviar reserva por Email <i class="bi bi-envelope-at"></i>
+                
+                <!-- Step 1 Actions -->
+                <button fw-if="$isStep1" type="button" class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2" onclick="((this)).goToStep2()">
+                    Continuar <i class="bi bi-arrow-right"></i>
                 </button>
-                <div class="text-center mt-0">
-                    <small class="text-muted cart-modal-small-text">¿Sin e-mail?
-                        <a
-                           href="#"
-                           onclick="
-                                ((this)).checkoutWhatsApp();
-                                return false;
-                            "
-                           class="text-success fw-bold text-decoration-none">Reserva por WhatsApp
-                            <i class="bi bi-whatsapp"></i></a></small>
+                <div fw-if="$isStep1" class="alert alert-warning border-0 rounded-3 p-2 mt-1 mb-0 w-100 text-center alert-highlight">
+                    <small class="text-dark d-block lh-sm cart-modal-small-text"><strong>📌 PAGO EN EFECTIVO:</strong> Te enviaremos un email para coordinarlo.</small>
                 </div>
-                <div
-                     class="alert alert-warning border-0 rounded-3 p-2 mt-1 mb-0 w-100 text-center alert-highlight">
-                    <small
-                           class="text-dark d-block lh-sm cart-modal-small-text"><strong>📌 PAGO EN EFECTIVO:</strong> Te enviaremos un
-                        email para coordinarlo.</small>
+
+                <!-- Step 2 Actions -->
+                <div fw-if="$isStep2" class="d-flex flex-column align-items-stretch gap-2 w-100">
+                    <button type="button" class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2" onclick="((this)).personForm.requestSubmit('email')">
+                        Enviar reserva por Email <i class="bi bi-envelope-at"></i>
+                    </button>
+                    <div class="text-center mt-0">
+                        <small class="text-muted cart-modal-small-text">¿Sin e-mail?
+                            <a href="#" onclick="((this)).personForm.requestSubmit('whatsapp'); return false;" class="text-success fw-bold text-decoration-none">Reserva por WhatsApp <i class="bi bi-whatsapp"></i></a>
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>

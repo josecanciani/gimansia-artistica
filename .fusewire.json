@@ -218,7 +218,9 @@
         "bi-envelope-paper",
         "bi-plus",
         "bi-trash3",
-        "bi-whatsapp"
+        "bi-whatsapp",
+        "bi-arrow-left",
+        "btn-link"
     ],
     "disabledChecks": []
 }

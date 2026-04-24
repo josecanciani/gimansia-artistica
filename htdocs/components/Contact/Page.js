@@ -12,12 +12,38 @@ export class Page extends Component {
      */
     async init() {
         this.personInfoForm = /** @type {import('./PersonInfoForm.js').PersonInfoForm} */ (
-            this.createChild('Contact/PersonInfoForm', 'personInfoForm', {})
+            this.createChild('Contact/PersonInfoForm', 'personInfoFormForContact', {})
         );
 
         this.personInfoForm.on('submit', (data) => {
-            this.console.log('Form submitted', data);
+            this.#handleFormSubmit(data);
         });
+    }
+
+    /**
+     * Process contact form submission and open external links.
+     * @param {Record<string, any>} data Data del formulario
+     */
+    #handleFormSubmit(data) {
+        const text =
+            `Hola! Tengo una consulta:\n\n` +
+            `Sede: ${data.sede}\n` +
+            `Modalidad: ${data.modalidad}\n` +
+            `Gimnasta: ${data.nombre}\n` +
+            `Grupo: ${data.grupo}\n` +
+            `Mail: ${data.email}\n` +
+            `Celular: ${data.celular}\n\n` +
+            `Mensaje:\n${data.mensaje}`;
+
+        if (data.method === 'email') {
+            const email = 'indumentariagimnasiahacoaj@gmail.com';
+            const subject = 'Consulta - Gimnasia Artística Hacoaj';
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+            window.open(mailtoLink, '_blank');
+        } else if (data.method === 'whatsapp') {
+            const waLink = `https://wa.me/+5491151562602?text=${encodeURIComponent(text)}`;
+            window.open(waLink, '_blank');
+        }
     }
 
     /**

@@ -43,23 +43,23 @@
             <div class="form-text text-muted" style="font-size: 0.75rem;">Ingresá el código de área y número sin espacios (ej: 1122334455).</div>
         </div>
         <div class="col-12 mt-2">
-            <label class="form-label fw-medium text-dark">Consulta / Mensaje</label>
-            <textarea name="mensaje" class="form-control border-0 shadow-sm" rows="4" placeholder="Escribí tu consulta acá..." required></textarea>
-            <div class="invalid-feedback">Por favor ingresá tu mensaje.</div>
+            <label class="form-label fw-medium text-dark">((messageLabel))</label>
+            <textarea name="mensaje" class="form-control border-0 shadow-sm" rows="4" placeholder="((messagePlaceholder))"></textarea>
+            <div fw-if="messageRequired" class="invalid-feedback">Por favor ingresá tu mensaje.</div>
         </div>
 
-        <div class="col-12 mt-4 d-flex flex-column align-items-center">
+        <div fw-if="showSubmitButtons" class="col-12 mt-4 d-flex flex-column align-items-center">
             <button type="submit" class="btn btn-primary fw-bold px-4 py-2 rounded-pill shadow-sm d-flex align-items-center justify-content-center gap-2">
-                Enviar consulta por Email <i class="bi bi-envelope-at"></i>
+                ((submitEmailText)) <i class="bi bi-envelope-at"></i>
             </button>
             <div class="text-center mt-2">
                 <small class="text-muted">¿Preferís WhatsApp?
                     <a href="#" onclick="((this)).submitWhatsApp(event)" class="text-success fw-bold text-decoration-none">
-                        Enviar por WhatsApp <i class="bi bi-whatsapp"></i>
+                        ((submitWhatsappText)) <i class="bi bi-whatsapp"></i>
                     </a>
                 </small>
             </div>
-            <div class="text-center mt-4">
+            <div fw-if="showDirectEmail" class="text-center mt-4">
                 <small class="text-muted">O envianos un mail directo a <br/> <a href="mailto:indumentariagimnasiahacoaj@gmail.com" class="text-decoration-none fw-bold">indumentariagimnasiahacoaj@gmail.com</a></small>
             </div>
         </div>

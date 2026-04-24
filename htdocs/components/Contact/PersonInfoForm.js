@@ -4,6 +4,27 @@ import { Component } from '@fusewire/client/component.js';
  * Person info form to capture Gymnast details.
  */
 export class PersonInfoForm extends Component {
+    /** @type {string} */
+    messageLabel = 'Consulta / Mensaje';
+
+    /** @type {string} */
+    messagePlaceholder = 'Escribí tu consulta acá...';
+
+    /** @type {boolean} */
+    messageRequired = true;
+
+    /** @type {boolean} */
+    showDirectEmail = true;
+
+    /** @type {string} */
+    submitEmailText = 'Enviar consulta por Email';
+
+    /** @type {string} */
+    submitWhatsappText = 'Enviar por WhatsApp';
+
+    /** @type {boolean} */
+    showSubmitButtons = true;
+
     /**
      * Emits form submission.
      * @param {Event} event The submit event.
@@ -27,26 +48,38 @@ export class PersonInfoForm extends Component {
     }
 
     /**
+     * Trigger submission from an external button
+     * @param {string} method The method to use ('email' or 'whatsapp')
+     */
+    requestSubmit(method) {
+        const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
+        if (form) {
+            this.#processSubmission(form, method);
+        }
+    }
+
+    /**
      * Process form submission and open external links.
      * @param {HTMLFormElement} form Form reference.
      * @param {string} method Method string.
      */
     #processSubmission(form, method) {
+        const messageField = /** @type {HTMLInputElement} */ (form.querySelector('[name="mensaje"]'));
+        messageField.setCustomValidity(
+            this.messageRequired && !messageField.value.trim() ? 'required' : '',
+        );
         if (!form.checkValidity()) {
             form.classList.add('was-validated');
-
             // Scroll to the first invalid element so the user knows what's wrong
             const firstInvalidElement = form.querySelector(':invalid');
             if (firstInvalidElement) {
                 firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-
             return;
         }
-
         const formData = new FormData(form);
-
         const data = {
+            method: method,
             sede: formData.get('sede'),
             modalidad: formData.get('modalidad'),
             nombre: formData.get('nombre'),
@@ -55,27 +88,6 @@ export class PersonInfoForm extends Component {
             celular: formData.get('celular'),
             mensaje: formData.get('mensaje'),
         };
-
-        const text =
-            `Hola! Tengo una consulta:\n\n` +
-            `Sede: ${data.sede}\n` +
-            `Modalidad: ${data.modalidad}\n` +
-            `Gimnasta: ${data.nombre}\n` +
-            `Grupo: ${data.grupo}\n` +
-            `Mail: ${data.email}\n` +
-            `Celular: ${data.celular}\n\n` +
-            `Mensaje:\n${data.mensaje}`;
-
-        if (method === 'email') {
-            const email = 'indumentariagimnasiahacoaj@gmail.com';
-            const subject = 'Consulta - Gimnasia Artística Hacoaj';
-            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-            window.open(mailtoLink, '_blank');
-        } else if (method === 'whatsapp') {
-            const waLink = `https://wa.me/+5491151562602?text=${encodeURIComponent(text)}`;
-            window.open(waLink, '_blank');
-        }
-
         this.emit('submit', data);
     }
 
