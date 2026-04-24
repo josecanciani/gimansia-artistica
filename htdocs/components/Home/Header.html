@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top glass-panel mx-3 mt-3 px-3 py-1 animate-fade-in header-nav">
     <div class="container-fluid">
         <!-- Brand pushed fully left -->
-        <a class="navbar-brand d-flex align-items-center text-decoration-none me-auto" href="#">
+        <a class="navbar-brand d-flex align-items-center text-decoration-none me-auto" href="#" onclick="((this)).scrollToHome(event)">
             <img src="./images/logo-hacoaj-azul.png" alt="Club Náutico Hacoaj" class="header-logo" />
         </a>
 
@@ -16,16 +16,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto fw-medium mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Inicio</a>
+                    <a class="nav-link" href="#" onclick="((this)).scrollToHome(event)">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Horarios</a>
+                    <a class="nav-link" href="#catalog" onclick="((this)).scrollToCatalog(event)">Catálogo</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Noticias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="#contact" onclick="((this)).scrollToContact(event)">Contacto</a>
                 </li>
             </ul>
         </div>

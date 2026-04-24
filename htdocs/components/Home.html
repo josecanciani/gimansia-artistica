@@ -1,12 +1,17 @@
-<div>
+<div class="home-wrapper">
     ((header))
+
     ((hero))
-    ((features))
+    <div fw-if="showFeatures">
+        ((features))
+    </div>
 
     <!-- Catalog Integration point -->
     <div class="bg-light pb-5">
         ((showcase))
     </div>
+
+    ((contactPage))
 
     ((footer))
 

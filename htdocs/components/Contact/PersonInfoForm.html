@@ -1,0 +1,67 @@
+<form onsubmit="((this)).submitForm(event)" novalidate>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label fw-medium text-dark">Sede</label>
+            <select name="sede" class="form-select border-0 shadow-sm" required>
+                <option value="">Seleccionar sede</option>
+                <option value="Capital">Capital</option>
+                <option value="Tigre">Tigre</option>
+            </select>
+            <div class="invalid-feedback">Por favor seleccioná una sede.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label fw-medium text-dark">Modalidad</label>
+            <select name="modalidad" class="form-select border-0 shadow-sm" required>
+                <option value="">Seleccionar modalidad</option>
+                <option value="Escuela">Escuela</option>
+                <option value="Equipo">Equipo</option>
+            </select>
+            <div class="invalid-feedback">Por favor seleccioná una modalidad.</div>
+        </div>
+        <div class="col-12">
+            <label class="form-label fw-medium text-dark">Nombre y apellido de la gimnasta</label>
+            <input type="text" name="nombre" class="form-control border-0 shadow-sm" placeholder="Ej: Ana Pérez" required />
+            <div class="invalid-feedback">Ingresá el nombre y apellido.</div>
+        </div>
+        <div class="col-12">
+            <label class="form-label fw-medium text-dark">Grupo al que pertenece</label>
+            <input type="text" name="grupo" class="form-control border-0 shadow-sm" placeholder="Ej: Pre-equipo" required />
+            <div class="invalid-feedback">Ingresá el grupo de la gimnasta.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label fw-medium text-dark">Mail de contacto</label>
+            <input type="email" name="email" class="form-control border-0 shadow-sm" placeholder="ejemplo@mail.com" required />
+            <div class="invalid-feedback">Ingresá un mail válido.</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label fw-medium text-dark">Celular de contacto</label>
+            <div class="input-group shadow-sm rounded">
+                <span class="input-group-text border-0 bg-light">+54</span>
+                <input type="tel" name="celular" class="form-control border-0" placeholder="11 1234 5678" pattern="[0-9]{2,4}[0-9]{6,8}" title="Ingresá un número válido sin guiones ni espacios (ej: 1122334455)" required />
+                <div class="invalid-feedback">Ingresá un celular válido sin espacios.</div>
+            </div>
+            <div class="form-text text-muted" style="font-size: 0.75rem;">Ingresá el código de área y número sin espacios (ej: 1122334455).</div>
+        </div>
+        <div class="col-12 mt-2">
+            <label class="form-label fw-medium text-dark">Consulta / Mensaje</label>
+            <textarea name="mensaje" class="form-control border-0 shadow-sm" rows="4" placeholder="Escribí tu consulta acá..." required></textarea>
+            <div class="invalid-feedback">Por favor ingresá tu mensaje.</div>
+        </div>
+
+        <div class="col-12 mt-4 d-flex flex-column align-items-center">
+            <button type="submit" class="btn btn-primary fw-bold px-4 py-2 rounded-pill shadow-sm d-flex align-items-center justify-content-center gap-2">
+                Enviar consulta por Email <i class="bi bi-envelope-at"></i>
+            </button>
+            <div class="text-center mt-2">
+                <small class="text-muted">¿Preferís WhatsApp?
+                    <a href="#" onclick="((this)).submitWhatsApp(event)" class="text-success fw-bold text-decoration-none">
+                        Enviar por WhatsApp <i class="bi bi-whatsapp"></i>
+                    </a>
+                </small>
+            </div>
+            <div class="text-center mt-4">
+                <small class="text-muted">O envianos un mail directo a <br> <a href="mailto:indumentariagimnasiahacoaj@gmail.com" class="text-decoration-none fw-bold">indumentariagimnasiahacoaj@gmail.com</a></small>
+            </div>
+        </div>
+    </div>
+</form>
