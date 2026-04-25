@@ -6,3 +6,9 @@
     height: 55px;
     object-fit: contain;
 }
+
+/* fw-dynamic-classes: active-link */
+.active-link {
+    font-weight: 700 !important;
+    color: var(--hacoaj-blue) !important;
+}

@@ -10,4 +10,11 @@ export class Hero extends Component {
     scrollToCatalog() {
         this.emit('scrollToCatalog');
     }
+
+    /**
+     * Emits event to scroll to help section.
+     */
+    scrollToHelp() {
+        this.emit('scrollToHelp');
+    }
 }

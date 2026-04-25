@@ -178,6 +178,5 @@ export class Modal extends Component {
             const waLink = `https://wa.me/+5491151562602?text=${encodeURIComponent(text)}`;
             window.open(waLink, '_blank');
         }
-        this.close();
     }
 }

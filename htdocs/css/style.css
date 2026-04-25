@@ -26,6 +26,12 @@ h6 {
     font-weight: 700;
 }
 
+/* Offset for scroll navigation to account for fixed header */
+section,
+.showcase {
+    scroll-margin-top: 75px;
+}
+
 /* Primary Button Styling */
 .btn-primary {
     background-color: var(--hacoaj-blue);
