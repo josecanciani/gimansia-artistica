@@ -8,7 +8,9 @@ export class Header extends Component {
     cartButton = /** @type {import('../Cart/Button.js').Button} */ (/** @type {unknown} */ (null));
 
     /** @type {import('@fusewire/client/component.js').PortalChild} */
-    cartModal = /** @type {import('@fusewire/client/component.js').PortalChild} */ (/** @type {unknown} */ (null));
+    cartModal = /** @type {import('@fusewire/client/component.js').PortalChild} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /**
      * Initializes the Header component and creates the cart button child.

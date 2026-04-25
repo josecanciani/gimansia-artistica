@@ -64,7 +64,9 @@ export class PersonInfoForm extends Component {
      * @param {string} method Method string.
      */
     #processSubmission(form, method) {
-        const messageField = /** @type {HTMLInputElement} */ (form.querySelector('[name="mensaje"]'));
+        const messageField = /** @type {HTMLInputElement} */ (
+            form.querySelector('[name="mensaje"]')
+        );
         messageField.setCustomValidity(
             this.messageRequired && !messageField.value.trim() ? 'required' : '',
         );

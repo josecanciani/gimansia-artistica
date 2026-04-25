@@ -5,13 +5,19 @@ import { Component } from '@fusewire/client/component.js';
  */
 export class Features extends Component {
     /** @type {import('./FeatureCard.js').FeatureCard} */
-    cardCompetencia = /** @type {import('./FeatureCard.js').FeatureCard} */ (/** @type {unknown} */ (null));
+    cardCompetencia = /** @type {import('./FeatureCard.js').FeatureCard} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /** @type {import('./FeatureCard.js').FeatureCard} */
-    cardSalud = /** @type {import('./FeatureCard.js').FeatureCard} */ (/** @type {unknown} */ (null));
+    cardSalud = /** @type {import('./FeatureCard.js').FeatureCard} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /** @type {import('./FeatureCard.js').FeatureCard} */
-    cardEspiritu = /** @type {import('./FeatureCard.js').FeatureCard} */ (/** @type {unknown} */ (null));
+    cardEspiritu = /** @type {import('./FeatureCard.js').FeatureCard} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /**
      * Initializes the Features component and creates child cards.

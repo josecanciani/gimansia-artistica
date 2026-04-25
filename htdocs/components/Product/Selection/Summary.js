@@ -55,7 +55,7 @@ export class Summary extends Component {
      */
     close() {
         this.isOpen = false;
-        this.editor = /** @type {import('./Editor.js').Editor} */ (/** @type {unknown} */(null));
+        this.editor = /** @type {import('./Editor.js').Editor} */ (/** @type {unknown} */ (null));
         this.react();
     }
 

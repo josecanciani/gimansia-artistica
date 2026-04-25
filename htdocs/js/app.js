@@ -5,5 +5,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         basePath: new URL('./components', document.baseURI).href,
     });
 
-    await reactor.start(/** @type {HTMLElement} */ (document.getElementById('app')), 'Home', 'main', {});
+    await reactor.start(
+        /** @type {HTMLElement} */ (document.getElementById('app')),
+        'Home',
+        'main',
+        {},
+    );
 });

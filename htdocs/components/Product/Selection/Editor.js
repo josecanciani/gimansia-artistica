@@ -48,9 +48,13 @@ export class Editor extends Component {
     get $draftTotalPrice() {
         let sum = 0;
         this.draftOptions.forEach((g) =>
-            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => {
-                sum += o.count * o.price;
-            }),
+            g.options.forEach(
+                (
+                    /** @type {{label: string, price: number, payload: string, count: number}} */ o,
+                ) => {
+                    sum += o.count * o.price;
+                },
+            ),
         );
         return sum;
     }
@@ -68,9 +72,13 @@ export class Editor extends Component {
      */
     clear() {
         this.draftOptions.forEach((g) =>
-            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => {
-                o.count = 0;
-            }),
+            g.options.forEach(
+                (
+                    /** @type {{label: string, price: number, payload: string, count: number}} */ o,
+                ) => {
+                    o.count = 0;
+                },
+            ),
         );
         this.react();
     }
@@ -90,7 +98,10 @@ export class Editor extends Component {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
         this.draftOptions.forEach((g) => {
-            const match = g.options.find((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => o.payload === payload);
+            const match = g.options.find(
+                (/** @type {{label: string, price: number, payload: string, count: number}} */ o) =>
+                    o.payload === payload,
+            );
             if (match) match.count++;
         });
         this.react();
@@ -104,7 +115,10 @@ export class Editor extends Component {
         const target = /** @type {HTMLElement} */ (event.currentTarget);
         const payload = target.getAttribute('data-payload');
         this.draftOptions.forEach((g) => {
-            const match = g.options.find((/** @type {{label: string, price: number, payload: string, count: number}} */ o) => o.payload === payload);
+            const match = g.options.find(
+                (/** @type {{label: string, price: number, payload: string, count: number}} */ o) =>
+                    o.payload === payload,
+            );
             if (match && match.count > 0) match.count--;
         });
         this.react();
@@ -117,11 +131,15 @@ export class Editor extends Component {
         /** @type {Record<string, number>} */
         const countsMap = {};
         this.draftOptions.forEach((g) => {
-            g.options.forEach((/** @type {{label: string, price: number, payload: string, count: number}} */ opt) => {
-                if (opt.count > 0) {
-                    countsMap[opt.payload] = opt.count;
-                }
-            });
+            g.options.forEach(
+                (
+                    /** @type {{label: string, price: number, payload: string, count: number}} */ opt,
+                ) => {
+                    if (opt.count > 0) {
+                        countsMap[opt.payload] = opt.count;
+                    }
+                },
+            );
         });
 
         this.emit('confirmed', countsMap);

@@ -11,7 +11,9 @@ export class Showcase extends Component {
     cartMap = {};
 
     /** @type {import('@fusewire/client/component.js').PortalChild} */
-    cartToast = /** @type {import('@fusewire/client/component.js').PortalChild} */ (/** @type {unknown} */ (null));
+    cartToast = /** @type {import('@fusewire/client/component.js').PortalChild} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /**
      * Inicialización del componente.
@@ -27,17 +29,24 @@ export class Showcase extends Component {
             const catalog = await response.json();
 
             // Map each JSON item to a ProductCard component instance
-            this.cards = catalog.map((/** @type {{id: string, title: string, description: string, images: string[], selections: Record<string, unknown>[]}} */ product) => {
-                return /** @type {import('../Product/Card.js').Card} */ (
-                    this.createChild('Product/Card', product.id, {
-                        productId: product.id,
-                        title: product.title,
-                        description: product.description,
-                        images: product.images,
-                        selections: /** @type {Array<import('@fusewire/client/component.js').VarValue>} */(product.selections),
-                    })
-                );
-            });
+            this.cards = catalog.map(
+                (
+                    /** @type {{id: string, title: string, description: string, images: string[], selections: Record<string, unknown>[]}} */ product,
+                ) => {
+                    return /** @type {import('../Product/Card.js').Card} */ (
+                        this.createChild('Product/Card', product.id, {
+                            productId: product.id,
+                            title: product.title,
+                            description: product.description,
+                            images: product.images,
+                            selections:
+                                /** @type {Array<import('@fusewire/client/component.js').VarValue>} */ (
+                                    product.selections
+                                ),
+                        })
+                    );
+                },
+            );
 
             // We subscribe to the add-to-cart events emitted by children
             this.cards.forEach((card) => {
@@ -52,7 +61,9 @@ export class Showcase extends Component {
      * Mueve el scroll hasta el catalogo.
      */
     scrollIntoView() {
-        /** @type {HTMLElement} */ (this.querySelector('.showcase')).scrollIntoView({ behavior: 'smooth' });
+        /** @type {HTMLElement} */ (this.querySelector('.showcase')).scrollIntoView({
+            behavior: 'smooth',
+        });
     }
 
     /**
@@ -60,10 +71,10 @@ export class Showcase extends Component {
      * @param {Record<string, unknown>} data - Datos de la orden
      */
     #handleAddToCart(data) {
-        if (data.selections && /** @type {Array<unknown>} */(data.selections).length > 0) {
-            this.cartMap[/** @type {string} */(data.id)] = data;
+        if (data.selections && /** @type {Array<unknown>} */ (data.selections).length > 0) {
+            this.cartMap[/** @type {string} */ (data.id)] = data;
         } else {
-            delete this.cartMap[/** @type {string} */(data.id)];
+            delete this.cartMap[/** @type {string} */ (data.id)];
         }
 
         this.emit('cartUpdated', Object.values(this.cartMap));

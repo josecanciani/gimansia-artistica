@@ -17,7 +17,9 @@ export class Home extends Component {
     features = /** @type {import('./Home/Features.js').Features} */ (/** @type {unknown} */ (null));
 
     /** @type {import('./Catalog/Showcase.js').Showcase} */
-    showcase = /** @type {import('./Catalog/Showcase.js').Showcase} */ (/** @type {unknown} */ (null));
+    showcase = /** @type {import('./Catalog/Showcase.js').Showcase} */ (
+        /** @type {unknown} */ (null)
+    );
 
     /** @type {import('./Contact/Page.js').Page} */
     contactPage = /** @type {import('./Contact/Page.js').Page} */ (/** @type {unknown} */ (null));

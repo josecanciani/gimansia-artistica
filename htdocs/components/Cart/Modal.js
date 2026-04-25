@@ -16,11 +16,21 @@ export class Modal extends Component {
     /** @type {number} */
     step = 1;
 
-    /** @type {boolean} */
-    get $isStep1() { return this.step === 1; }
+    /**
+     * Check if step 1 is active
+     * @type {boolean}
+     */
+    get $isStep1() {
+        return this.step === 1;
+    }
 
-    /** @type {boolean} */
-    get $isStep2() { return this.step === 2; }
+    /**
+     * Check if step 2 is active
+     * @type {boolean}
+     */
+    get $isStep2() {
+        return this.step === 2;
+    }
 
     /** @type {import('../Contact/PersonInfoForm.js').PersonInfoForm|null} */
     personForm = null;
