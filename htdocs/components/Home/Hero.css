@@ -58,4 +58,13 @@
 
 .hero-btn-help {
     background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.hero-btn-help:hover {
+    background-color: #ffffff;
+    color: var(--hacoaj-blue-dark) !important;
+    border-color: var(--hacoaj-blue-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 51, 160, 0.15);
 }
