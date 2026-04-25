@@ -4,7 +4,7 @@ This is the central development profile and constraint guide for the Gimnasia Ar
 
 ## Tech Stack
 
-- **Framework:** FuseWire UI Framework (client-side implementation via `github:josecanciani/fusewire#release/1.0.0`)
+- **Framework:** FuseWire UI Framework (client-side implementation via `github:josecanciani/fusewire#semver:^1.0.0`)
 - **Server:** Minimal Express server via `server.js` (for serving static assets on port `8080`)
 - **Type Safety & Linting:** Enforced strictly via `oxlint`, `oxfmt`, and JS Type annotations handled by `eslint-plugin-jsdoc`.
 

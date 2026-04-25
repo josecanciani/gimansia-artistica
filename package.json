@@ -30,7 +30,7 @@
         "typescript": "^6.0.2"
     },
     "dependencies": {
-        "@fusewire/client": "github:josecanciani/fusewire#release/1.0.0",
+        "@fusewire/client": "github:josecanciani/fusewire#semver:^1.0.0",
         "idiomorph": "^0.7.4"
     }
 }
