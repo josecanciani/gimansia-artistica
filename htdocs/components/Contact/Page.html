@@ -1,15 +1,39 @@
-<section id="contact" class="py-5 bg-light min-vh-100">
-    <div class="container pb-5">
+<section id="contact" class="py-5 bg-light">
+    <div class="container py-lg-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="text-center mb-5">
-                    <h2 class="display-5 fw-bold text-dark">Contacto</h2>
-                    <p class="text-muted">¿Tenés alguna consulta o inquietud? Escribinos o completá el formulario.</p>
-                </div>
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="text-center mb-5">
+                            <h2 class="display-6 fw-bold text-dark mb-3">Contactanos</h2>
+                            <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                                ¿Tenés dudas sobre talles, stock o envíos? Completá el formulario y te responderemos a la brevedad.
+                            </p>
+                        </div>
 
-                <div class="bg-white border rounded-4 shadow-sm p-4 animate-fade-in">
-                    <h4 class="fw-bold mb-4 border-bottom pb-2">Formulario de Contacto</h4>
-                    ((personInfoForm))
+                        ((personInfoForm))
+
+                        <div class="col-12 mt-5 d-flex flex-column align-items-center text-center">
+                            <button type="button" onclick="((this)).submitByEmail()" class="btn btn-primary fw-bold px-5 py-3 rounded-pill shadow-sm d-flex align-items-center justify-content-center gap-2 mb-3">
+                                Enviar consulta por Email <i class="bi bi-envelope-at fs-5"></i>
+                            </button>
+
+                            <div class="mt-2">
+                                <small class="text-muted d-block">
+                                    ¿Problemas enviando?
+                                    <button type="button" class="btn btn-link p-0 text-decoration-none mx-1" onclick="((this)).handleCopy()" title="Copiar consulta" style="font-size: inherit; vertical-align: baseline;">
+                                        <i fw-if="!copied" class="bi bi-copy"></i>
+                                        <i fw-if="copied" class="bi bi-check2 text-success"></i>
+                                        <span class="ms-1">(( copied ? '¡Copiado!' : 'Copiar consulta' ))</span>
+                                    </button>
+                                    y mandala a <b>indumentariagimnasiahacoaj@gmail.com</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-primary text-white border-0 py-3 text-center">
+                        <small class="opacity-75">Gimnasia Artística — Club Náutico Hacoaj</small>
+                    </div>
                 </div>
             </div>
         </div>

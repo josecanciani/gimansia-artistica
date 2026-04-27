@@ -1,4 +1,4 @@
-import { Component } from '@fusewire/client/component.js';
+import { Component } from "@fusewire/client/component.js";
 
 /**
  * UI Checkout overlay
@@ -15,6 +15,9 @@ export class Modal extends Component {
 
     /** @type {number} */
     step = 1;
+
+    /** @type {boolean} */
+    copied = false;
 
     /**
      * Check if step 1 is active
@@ -37,16 +40,19 @@ export class Modal extends Component {
 
     /** Overridden method */
     async init() {
-        this.personForm = /** @type {import('../Contact/PersonInfoForm.js').PersonInfoForm} */ (
-            this.createChild('Contact/PersonInfoForm', 'personInfoFormForCart', {
-                messageLabel: 'Comentarios',
-                messagePlaceholder: 'Escribí opcionalmente un comentario extra acá...',
-                messageRequired: false,
-                showDirectEmail: false,
-                showSubmitButtons: false,
-            })
-        );
-        this.personForm.on('submit', (data) => this.#handleFormSubmit(data));
+        this.personForm =
+            /** @type {import('../Contact/PersonInfoForm.js').PersonInfoForm} */ (
+                this.createChild(
+                    "Contact/PersonInfoForm",
+                    "personInfoFormForCart",
+                    {
+                        messageLabel: "Comentarios",
+                        messagePlaceholder:
+                            "Escribí opcionalmente un comentario extra acá...",
+                        messageRequired: false,
+                    },
+                )
+            );
     }
 
     /**
@@ -62,7 +68,7 @@ export class Modal extends Component {
      * @returns {string} render
      */
     get $formattedTotal() {
-        return this.$totalPrice.toLocaleString('es-AR');
+        return this.$totalPrice.toLocaleString("es-AR");
     }
 
     /**
@@ -93,8 +99,8 @@ export class Modal extends Component {
                     group: g.group,
                     option: g.option,
                     count: g.count,
-                    countBadge: g.count > 1 ? `x${g.count}` : '',
-                    totalLinePrice: (g.count * g.price).toLocaleString('es-AR'),
+                    countBadge: g.count > 1 ? `x${g.count}` : "",
+                    totalLinePrice: (g.count * g.price).toLocaleString("es-AR"),
                 })),
             };
         });
@@ -127,6 +133,37 @@ export class Modal extends Component {
     }
 
     /**
+     * Submit by email
+     */
+    submitByEmail() {
+        const data = this.personForm?.getFormData();
+        if (data) {
+            this.#processSubmission(data, "email");
+        }
+    }
+
+    /**
+     * Copy to clipboard fallback
+     */
+    async handleCopy() {
+        const data = this.personForm?.getFormData();
+        if (!data) return;
+
+        const text = this.#generatePayloadText(data);
+        try {
+            await navigator.clipboard.writeText(text);
+            this.copied = true;
+            this.react();
+            setTimeout(() => {
+                this.copied = false;
+                this.react();
+            }, 2000);
+        } catch (err) {
+            window.console.error("Failed to copy: ", err);
+        }
+    }
+
+    /**
      * Generador de cadena central de texto con toda la data consolidada.
      * @param {Record<string, any>} userData User details from form
      * @returns {string} Generates the payload text
@@ -151,11 +188,12 @@ export class Modal extends Component {
             const grouped = {};
             for (const item of product.selections) {
                 const key = `${item.group} - ${item.option}`;
-                if (!grouped[key]) grouped[key] = { count: 0, price: item.price };
+                if (!grouped[key])
+                    grouped[key] = { count: 0, price: item.price };
                 grouped[key].count++;
             }
             for (const [key, obj] of Object.entries(grouped)) {
-                text += `- ${obj.count}x ${key} ($${obj.price.toLocaleString('es-AR')} c/u)\n`;
+                text += `- ${obj.count}x ${key} ($${obj.price.toLocaleString("es-AR")} c/u)\n`;
             }
             text += `\n`;
         });
@@ -166,17 +204,15 @@ export class Modal extends Component {
     /**
      * Procesar envío del formulario final
      * @param {Record<string, any>} data Data del formulario
+     * @param {string} method Method
      */
-    #handleFormSubmit(data) {
+    #processSubmission(data, method) {
         const text = this.#generatePayloadText(data);
-        if (data.method === 'email') {
-            const email = 'indumentariagimnasiahacoaj@gmail.com';
-            const subject = 'Pedido de Indumentaria';
+        if (method === "email") {
+            const email = "indumentariagimnasiahacoaj@gmail.com";
+            const subject = "Pedido de Indumentaria";
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-            window.open(mailtoLink, '_blank');
-        } else if (data.method === 'whatsapp') {
-            const waLink = `https://wa.me/+5491151562602?text=${encodeURIComponent(text)}`;
-            window.open(waLink, '_blank');
+            window.open(mailtoLink, "_blank");
         }
     }
 }

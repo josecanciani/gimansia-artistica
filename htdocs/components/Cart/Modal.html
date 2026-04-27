@@ -68,12 +68,18 @@
 
                 <!-- Step 2 Actions -->
                 <div fw-if="$isStep2" class="d-flex flex-column align-items-stretch gap-2 w-100">
-                    <button type="button" class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2" onclick="((this)).personForm.requestSubmit('email')">
+                    <button type="button" class="btn btn-primary fw-bold px-3 rounded-pill shadow-sm py-2 fs-6 d-flex align-items-center justify-content-center gap-2" onclick="((this)).submitByEmail()">
                         Enviar reserva por Email <i class="bi bi-envelope-at"></i>
                     </button>
-                    <div class="text-center mt-0">
-                        <small class="text-muted cart-modal-small-text">¿Sin e-mail?
-                            <a href="#" onclick="((this)).personForm.requestSubmit('whatsapp'); return false;" class="text-success fw-bold text-decoration-none">Reserva por WhatsApp <i class="bi bi-whatsapp"></i></a>
+                    <div class="text-center mt-2">
+                        <small class="text-muted d-block cart-modal-small-text">
+                            ¿Problemas enviando?
+                            <button type="button" class="btn btn-link p-0 text-decoration-none mx-1" onclick="((this)).handleCopy()" title="Copiar pedido" style="font-size: inherit; vertical-align: baseline;">
+                                <i fw-if="!copied" class="bi bi-copy"></i>
+                                <i fw-if="copied" class="bi bi-check2 text-success"></i>
+                                <span class="ms-1">(( copied ? '¡Copiado!' : 'Copiar pedido' ))</span>
+                            </button>
+                            y mandalo a <b>indumentariagimnasiahacoaj@gmail.com</b>
                         </small>
                     </div>
                 </div>

@@ -1,106 +1,115 @@
-import { Component } from '@fusewire/client/component.js';
+import { Component } from "@fusewire/client/component.js";
 
 /**
  * Person info form to capture Gymnast details.
  */
 export class PersonInfoForm extends Component {
-    /** @type {string} */
-    messageLabel = 'Consulta / Mensaje';
+    // Labels
+    sedeLabel = "Sede";
+    modalidadLabel = "Modalidad";
+    nombreLabel = "Nombre y apellido de la gimnasta";
+    grupoLabel = "Grupo al que pertenece";
+    emailLabel = "Mail de contacto";
+    celularLabel = "Celular de contacto";
+    messageLabel = "Consulta / Mensaje";
+    messagePlaceholder = "Escribí tu consulta acá...";
 
-    /** @type {string} */
-    messagePlaceholder = 'Escribí tu consulta acá...';
-
-    /** @type {boolean} */
+    // Mandatory flags
+    sedeRequired = true;
+    modalidadRequired = true;
+    nombreRequired = true;
+    grupoRequired = true;
+    emailRequired = true;
+    celularRequired = true;
     messageRequired = true;
 
-    /** @type {boolean} */
-    showDirectEmail = true;
-
-    /** @type {string} */
-    submitEmailText = 'Enviar consulta por Email';
-
-    /** @type {string} */
-    submitWhatsappText = 'Enviar por WhatsApp';
-
-    /** @type {boolean} */
-    showSubmitButtons = true;
+    // Form field states
+    sede = "";
+    modalidad = "";
+    nombre = "";
+    grupo = "";
+    email = "";
+    celular = "";
+    mensaje = "";
 
     /**
-     * Emits form submission.
-     * @param {Event} event The submit event.
+     * Synchronizes input value with component state
+     * @param {Event} event The input event
      */
-    submitForm(event) {
-        event.preventDefault();
-        const form = /** @type {HTMLFormElement} */ (event.target);
-        this.#processSubmission(form, 'email');
-    }
-
-    /**
-     * Fallback to WhatsApp
-     * @param {Event} event The click event.
-     */
-    submitWhatsApp(event) {
-        event.preventDefault();
-        const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
-        if (form) {
-            this.#processSubmission(form, 'whatsapp');
+    sync(event) {
+        const target =
+            /** @type {HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement} */ (
+                event.target
+            );
+        const name = target.getAttribute("name");
+        if (name && name in this) {
+            // @ts-ignore
+            this[name] = target.value;
         }
-    }
-
-    /**
-     * Trigger submission from an external button
-     * @param {string} method The method to use ('email' or 'whatsapp')
-     */
-    requestSubmit(method) {
-        const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
-        if (form) {
-            this.#processSubmission(form, method);
-        }
-    }
-
-    /**
-     * Process form submission and open external links.
-     * @param {HTMLFormElement} form Form reference.
-     * @param {string} method Method string.
-     */
-    #processSubmission(form, method) {
-        const messageField = /** @type {HTMLInputElement} */ (
-            form.querySelector('[name="mensaje"]')
-        );
-        messageField.setCustomValidity(
-            this.messageRequired && !messageField.value.trim() ? 'required' : '',
-        );
-        if (!form.checkValidity()) {
-            form.classList.add('was-validated');
-            // Scroll to the first invalid element so the user knows what's wrong
-            const firstInvalidElement = form.querySelector(':invalid');
-            if (firstInvalidElement) {
-                firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            return;
-        }
-        const formData = new FormData(form);
-        const data = {
-            method: method,
-            sede: formData.get('sede'),
-            modalidad: formData.get('modalidad'),
-            nombre: formData.get('nombre'),
-            grupo: formData.get('grupo'),
-            email: formData.get('email'),
-            celular: formData.get('celular'),
-            mensaje: formData.get('mensaje'),
-        };
-        this.emit('submit', data);
     }
 
     /**
      * Resets the form fields.
      */
     reset() {
-        const form = /** @type {HTMLFormElement} */ (this.querySelector('form'));
+        this.sede = "";
+        this.modalidad = "";
+        this.nombre = "";
+        this.grupo = "";
+        this.email = "";
+        this.celular = "";
+        this.mensaje = "";
+
+        const form = /** @type {HTMLFormElement} */ (
+            this.querySelector("form")
+        );
         if (form) {
             form.reset();
-            form.classList.remove('was-validated');
+            form.classList.remove("was-validated");
         }
+        this.react();
+    }
+
+    /**
+     * Returns the form data if valid, otherwise triggers validation UI and returns null.
+     * @returns {Record<string, any> | null}
+     */
+    getFormData() {
+        const form = /** @type {HTMLFormElement} */ (
+            this.querySelector("form")
+        );
+        if (!form) return null;
+
+        // Custom validation for textarea since it's hard to do via attribute-only in some cases
+        const messageField = /** @type {HTMLInputElement} */ (
+            form.querySelector('[name="mensaje"]')
+        );
+        if (messageField) {
+            messageField.setCustomValidity(
+                this.messageRequired && !this.mensaje.trim() ? "required" : "",
+            );
+        }
+
+        if (!form.checkValidity()) {
+            form.classList.add("was-validated");
+            const firstInvalidElement = form.querySelector(":invalid");
+            if (firstInvalidElement) {
+                firstInvalidElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
+            return null;
+        }
+
+        return {
+            sede: this.sede,
+            modalidad: this.modalidad,
+            nombre: this.nombre,
+            grupo: this.grupo,
+            email: this.email,
+            celular: this.celular,
+            mensaje: this.mensaje,
+        };
     }
 }
