@@ -156,7 +156,7 @@
         "selections": [
             {
                 "label": "Talle",
-                "price": 40000,
+                "price": 60000,
                 "options": ["Talle 0", "Talle 1", "Talle 2", "Talle 3"]
             }
         ]
