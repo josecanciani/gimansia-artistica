@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+    tags: ["*"]
   workflow_dispatch:
 
 permissions:
@@ -24,23 +25,42 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
       
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Prepare Vendor files
+      - name: Build Beta (main)
         run: |
+          git checkout main
+          npm install
           mkdir -p htdocs/vendor/@fusewire
           mkdir -p htdocs/vendor/idiomorph
           cp -r node_modules/@fusewire/client htdocs/vendor/@fusewire/
           cp -r node_modules/idiomorph htdocs/vendor/
+          mkdir -p dist/beta
+          cp -r htdocs/* dist/beta/
+          
+      - name: Build Production (latest tag)
+        run: |
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` || echo "")
+          if [ -n "$LATEST_TAG" ]; then
+            git checkout $LATEST_TAG
+            npm install
+            mkdir -p htdocs/vendor/@fusewire
+            mkdir -p htdocs/vendor/idiomorph
+            cp -r node_modules/@fusewire/client htdocs/vendor/@fusewire/
+            cp -r node_modules/idiomorph htdocs/vendor/
+            cp -r htdocs/* dist/
+          else
+            echo "No tags found, copying beta to root as fallback"
+            cp -r dist/beta/* dist/
+          fi
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -48,7 +68,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'htdocs'
+          path: 'dist'
       
       - name: Deploy to GitHub Pages
         id: deployment
