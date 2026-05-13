@@ -14,10 +14,19 @@
                     Subcomisión <br />
                     <span class="text-gradient">Gimnasia Artística CNH</span>
                 </h1>
-                <p class="lead text-secondary mb-5 animate-slide-up delay-200 hero-description">
-                    Accedé a la colección de indumentaria de Gimnasia Hacoaj 2026.
-                    ¡Hacé tu reserva hoy mismo!
-                </p>
+                <div fw-if="showMarketplace" class="animate-slide-up delay-200">
+                    <p class="lead text-secondary mb-5 hero-description">
+                        Accedé a la colección de indumentaria de Gimnasia Hacoaj 2026.
+                        ¡Hacé tu reserva hoy mismo!
+                    </p>
+                </div>
+                <div fw-if="!showMarketplace" class="animate-slide-up delay-200">
+                    <p class="lead text-secondary mb-5 hero-description">
+                        Accedé a la colección de indumentaria de Gimnasia Hacoaj 2026.
+                        <br/>
+                        <span class="text-danger fw-medium d-inline-block mt-2"><i class="bi bi-info-circle me-1"></i> Las reservas se encuentran temporalmente deshabilitadas. Volvé más tarde o contactanos para más información.</span>
+                    </p>
+                </div>
                 <div
                      class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3 animate-slide-up delay-200">
                     <button type="button" onclick="((this)).scrollToCatalog()" class="btn btn-primary btn-lg">

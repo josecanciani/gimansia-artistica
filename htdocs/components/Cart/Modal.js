@@ -1,4 +1,4 @@
-import { Component } from "@fusewire/client/component.js";
+import { Component } from '@fusewire/client/component.js';
 
 /**
  * UI Checkout overlay
@@ -42,16 +42,11 @@ export class Modal extends Component {
     async init() {
         this.personForm =
             /** @type {import('../Contact/PersonInfoForm.js').PersonInfoForm} */ (
-                this.createChild(
-                    "Contact/PersonInfoForm",
-                    "personInfoFormForCart",
-                    {
-                        messageLabel: "Comentarios",
-                        messagePlaceholder:
-                            "Escribí opcionalmente un comentario extra acá...",
-                        messageRequired: false,
-                    },
-                )
+                this.createChild('Contact/PersonInfoForm', 'personInfoFormForCart', {
+                    messageLabel: 'Comentarios',
+                    messagePlaceholder: 'Escribí opcionalmente un comentario extra acá...',
+                    messageRequired: false,
+                })
             );
     }
 
@@ -68,7 +63,7 @@ export class Modal extends Component {
      * @returns {string} render
      */
     get $formattedTotal() {
-        return this.$totalPrice.toLocaleString("es-AR");
+        return this.$totalPrice.toLocaleString('es-AR');
     }
 
     /**
@@ -99,8 +94,8 @@ export class Modal extends Component {
                     group: g.group,
                     option: g.option,
                     count: g.count,
-                    countBadge: g.count > 1 ? `x${g.count}` : "",
-                    totalLinePrice: (g.count * g.price).toLocaleString("es-AR"),
+                    countBadge: g.count > 1 ? `x${g.count}` : '',
+                    totalLinePrice: (g.count * g.price).toLocaleString('es-AR'),
                 })),
             };
         });
@@ -138,7 +133,7 @@ export class Modal extends Component {
     submitByEmail() {
         const data = this.personForm?.getFormData();
         if (data) {
-            this.#processSubmission(data, "email");
+            this.#processSubmission(data, 'email');
         }
     }
 
@@ -159,7 +154,7 @@ export class Modal extends Component {
                 this.react();
             }, 2000);
         } catch (err) {
-            window.console.error("Failed to copy: ", err);
+            window.console.error('Failed to copy: ', err);
         }
     }
 
@@ -188,12 +183,11 @@ export class Modal extends Component {
             const grouped = {};
             for (const item of product.selections) {
                 const key = `${item.group} - ${item.option}`;
-                if (!grouped[key])
-                    grouped[key] = { count: 0, price: item.price };
+                if (!grouped[key]) grouped[key] = { count: 0, price: item.price };
                 grouped[key].count++;
             }
             for (const [key, obj] of Object.entries(grouped)) {
-                text += `- ${obj.count}x ${key} ($${obj.price.toLocaleString("es-AR")} c/u)\n`;
+                text += `- ${obj.count}x ${key} ($${obj.price.toLocaleString('es-AR')} c/u)\n`;
             }
             text += `\n`;
         });
@@ -208,11 +202,11 @@ export class Modal extends Component {
      */
     #processSubmission(data, method) {
         const text = this.#generatePayloadText(data);
-        if (method === "email") {
-            const email = "indumentariagimnasiahacoaj@gmail.com";
-            const subject = "Pedido de Indumentaria";
+        if (method === 'email') {
+            const email = 'indumentariagimnasiahacoaj@gmail.com';
+            const subject = 'Pedido de Indumentaria';
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-            window.open(mailtoLink, "_blank");
+            window.open(mailtoLink, '_blank');
         }
     }
 }

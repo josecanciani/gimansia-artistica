@@ -1,4 +1,4 @@
-import { Component } from "@fusewire/client/component.js";
+import { Component } from '@fusewire/client/component.js';
 
 /**
  * Contact Page component.
@@ -6,9 +6,7 @@ import { Component } from "@fusewire/client/component.js";
 export class Page extends Component {
     /** @type {import('./PersonInfoForm.js').PersonInfoForm} */
     personInfoForm =
-        /** @type {import('./PersonInfoForm.js').PersonInfoForm} */ (
-            /** @type {unknown} */ (null)
-        );
+        /** @type {import('./PersonInfoForm.js').PersonInfoForm} */ (/** @type {unknown} */ (null));
 
     /** @type {boolean} */
     copied = false;
@@ -19,11 +17,7 @@ export class Page extends Component {
     async init() {
         this.personInfoForm =
             /** @type {import('./PersonInfoForm.js').PersonInfoForm} */ (
-                this.createChild(
-                    "Contact/PersonInfoForm",
-                    "personInfoFormForContact",
-                    {},
-                )
+                this.createChild('Contact/PersonInfoForm', 'personInfoFormForContact', {})
             );
     }
 
@@ -33,7 +27,7 @@ export class Page extends Component {
     submitByEmail() {
         const data = this.personInfoForm.getFormData();
         if (data) {
-            this.#processSubmission(data, "email");
+            this.#processSubmission(data, 'email');
         }
     }
 
@@ -54,7 +48,7 @@ export class Page extends Component {
                 this.react();
             }, 2000);
         } catch (err) {
-            window.console.error("Failed to copy: ", err);
+            window.console.error('Failed to copy: ', err);
         }
     }
 
@@ -84,11 +78,11 @@ export class Page extends Component {
     #processSubmission(data, method) {
         const text = this.#generatePayloadText(data);
 
-        if (method === "email") {
-            const email = "indumentariagimnasiahacoaj@gmail.com";
-            const subject = "Consulta - Gimnasia Artística Hacoaj";
+        if (method === 'email') {
+            const email = 'indumentariagimnasiahacoaj@gmail.com';
+            const subject = 'Consulta - Gimnasia Artística Hacoaj';
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-            window.open(mailtoLink, "_blank");
+            window.open(mailtoLink, '_blank');
         }
     }
 
@@ -96,10 +90,8 @@ export class Page extends Component {
      * Scrolls the component into view.
      */
     scrollIntoView() {
-        /** @type {HTMLElement} */ (
-            this.querySelector("#contact")
-        ).scrollIntoView({
-            behavior: "smooth",
+        /** @type {HTMLElement} */ (this.querySelector('#contact')).scrollIntoView({
+            behavior: 'smooth',
         });
     }
 }

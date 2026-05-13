@@ -1,9 +1,12 @@
 import { Component } from '@fusewire/client/component.js';
+import { CONFIG } from '../../../js/config.js';
 
 /**
  * Componente principal estático que detona el editor y guarda el estado global validado.
  */
 export class Summary extends Component {
+    /** @type {boolean} */
+    enableMarketplace = CONFIG.enableMarketplace;
     /** @type {Array<Record<string, any>>} */
     groups = [];
 

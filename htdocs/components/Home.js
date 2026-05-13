@@ -1,9 +1,13 @@
 import { Component } from '@fusewire/client/component.js';
+import { CONFIG } from '../js/config.js';
 
 /**
  * Main Home component.
  */
 export class Home extends Component {
+    /** @type {boolean} */
+    showMarketplace = CONFIG.enableMarketplace;
+
     /** @type {boolean} */
     showFeatures = false;
 

@@ -1,9 +1,12 @@
 import { Component } from '@fusewire/client/component.js';
+import { CONFIG } from '../../js/config.js';
 
 /**
  * Header component for the Home page.
  */
 export class Header extends Component {
+    /** @type {boolean} */
+    showMarketplace = CONFIG.enableMarketplace;
     /** @type {import('../Cart/Button.js').Button} */
     cartButton = /** @type {import('../Cart/Button.js').Button} */ (/** @type {unknown} */ (null));
 

@@ -8,7 +8,9 @@
 
         <!-- Group Cart and Menu toggler to the right -->
         <div class="d-flex align-items-center gap-2 order-lg-last z-3">
-            ((cartButton))
+            <div fw-if="showMarketplace" style="display: contents;">
+                ((cartButton))
+            </div>
             <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-label="Abrir menú">
                 <span class="navbar-toggler-icon"></span>
