@@ -1,6 +1,6 @@
 {
     "name": "gimnasia-artistica",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Gimnasia Artistica Website",
     "type": "module",
     "scripts": {
@@ -16,7 +16,8 @@
         "html-check": "html-validate 'htdocs/**/*.html'",
         "jsdoc-check": "eslint htdocs/ src/",
         "typecheck": "tsc -p jsconfig.json --noEmit",
-        "postinstall": "npm run build:types --prefix node_modules/@fusewire/client"
+        "postinstall": "npm run build:types --prefix node_modules/@fusewire/client",
+        "changelog": "changelog --url https://github.com/josecanciani/gimnasia-artistica --head main --no-v-prefix"
     },
     "devDependencies": {
         "@playwright/test": "^1.58.2",
@@ -25,6 +26,7 @@
         "express": "^5.2.1",
         "html-validate": "^10.11.2",
         "js-beautify": "^1.15.4",
+        "keep-a-changelog": "^3.0.2",
         "oxfmt": "^0.41.0",
         "oxlint": "^1.56.0",
         "typescript": "^6.0.2"
